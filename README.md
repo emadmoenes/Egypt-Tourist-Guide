@@ -1,16 +1,17 @@
-# egypt_tourist_guide
+# Egypt Tourist Guide
 
-A new Flutter project.
+A Flutter-based mobile application for tourists visiting Egypt to explore landmarks, museums, and attractions across different governorates.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- User Authentication (Signup/Login)
+- Home Page with Suggested and Popular Places
+- Governorates Page with Landmarks
+- Favorites Page to Save Favorite Places
+- Profile Page to View User Information
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter
+- Dart
+- MVC Architecture
