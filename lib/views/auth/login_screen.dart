@@ -10,6 +10,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool hiddenPassword = true;
+  final emailRegex =
+      RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
   void togglePasswordVisibility() {
     setState(() {
       hiddenPassword = !hiddenPassword;
@@ -61,6 +63,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return 'Email Cannot be empty';
+                      }
+                      if (!emailRegex.hasMatch(value!)) {
+                        //if no match found it evaluates to true
+                        return 'Please Enter a valid Email.';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 16.0),
                   TextFormField(
@@ -87,13 +99,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return 'Password Cannot be empty';
+                      }
+                      if (value!.length < 6) {
+                        // Check if the password is less than 6 characters
+                        return 'Password should contain at least 6 characters';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 16.0),
                   ElevatedButton(
                     //Login button
                     onPressed: () {
-                      authController.handleLogin(context, emailController.text,
-                          passwordController.text);
+                      if (_formKey.currentState!.validate()) {
+                        authController.handleLogin(context,
+                            emailController.text, passwordController.text);
+                      }
                     },
                     child: Text('Login'),
                   )
