@@ -27,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Stack(
       children: [
         Positioned.fill(
+          // image stretches to fill entire space of stack.
           child: Image.asset(
             'assets/images/pyramids.png',
             fit: BoxFit.cover,
@@ -36,13 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Container(
             padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withAlpha(75),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Form(
               key: _formKey,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize
+                    .min, //tells main axis to take min amount of space to fit its children
                 children: [
                   TextFormField(
                     //Email field

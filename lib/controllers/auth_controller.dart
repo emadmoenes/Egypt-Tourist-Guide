@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController {
-  Future<bool> saveCredentials(String email, String password) async {
+  void saveCredentials(String email, String password) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('email', email);
     await prefs.setString('password', password);
-    return true;
   }
 
   Future<Map<String, String>> getCredentials() async {
