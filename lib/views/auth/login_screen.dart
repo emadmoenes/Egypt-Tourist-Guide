@@ -1,3 +1,4 @@
+import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  AuthController authController = AuthController();
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 16.0),
                     ElevatedButton(
                       //Login button
-                      onPressed: () {},
+                      onPressed: () {
+                        authController.handleLogin(context,
+                            emailController.text, passwordController.text);
+                      },
                       child: Text('Login'),
                     )
                   ],
