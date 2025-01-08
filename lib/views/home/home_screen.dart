@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       bottomNavigationBar: AppBottomNavigationBar(),
       appBar: AppBar(
         title: Text("Egypt Tourist Guide",),
