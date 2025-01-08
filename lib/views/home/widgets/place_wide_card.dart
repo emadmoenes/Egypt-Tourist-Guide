@@ -3,9 +3,9 @@ import 'package:egypt_tourist_guide/models/place_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PlaceCard extends StatelessWidget {
+class PlaceWideCard extends StatelessWidget {
   final PlacesModel place;
-  const PlaceCard({super.key, required this.place});
+  const PlaceWideCard({super.key, required this.place});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,8 @@ class PlaceCard extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: width*0.42,
-            height: width*0.42,
+            width: width*0.81,
+            height: width*0.81*0.75,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Color(0xffD0CBFF),
@@ -39,9 +39,26 @@ class PlaceCard extends StatelessWidget {
 
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(place.name, style: TextStyle(fontSize: textFactor*14,color: Colors.white,overflow: TextOverflow.ellipsis),maxLines: 1,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(place.name, style: TextStyle(fontSize: textFactor*14,color: Colors.white,overflow: TextOverflow.ellipsis),maxLines: 1,),
+                          InkWell(
+                            onTap: (){
+                              homeCubit.togglingFavourite(place: place);
+                            },
+                            child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                maxRadius: 10,
+                                child: place.isFav?
+                                  Icon(Icons.favorite_outline_rounded,color: Colors.black,size: 10,):
+                                  Icon(Icons.favorite_rounded,color: Color(0xffFF54A0),size: 10,)
+                            ),
+                          )
+                        ],
+                      ),
                       Text(place.description, style: TextStyle(fontSize: textFactor*11,color: Colors.white,overflow: TextOverflow.ellipsis),maxLines: 1,)
                     ],
                   ),
@@ -50,22 +67,6 @@ class PlaceCard extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            right: 15,
-            top: 115,
-            child: InkWell(
-              onTap: (){
-                homeCubit.togglingFavourite(place: place);
-              },
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                  maxRadius: 10,
-                  child: place.isFav? 
-                    Icon(Icons.favorite_outline_rounded,color: Colors.black,size: 10,):
-                    Icon(Icons.favorite_rounded,color: Color(0xffFF54A0),size: 10,)
-              ),
-            ),
-          )
         ],
       ),
     );
