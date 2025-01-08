@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Egypt Tourist Guide',
       theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/login',
+      initialRoute: '/signup',
       routes: {
         '/signup': (context) => SignupScreen(),
         '/login': (context) => LoginScreen(),
