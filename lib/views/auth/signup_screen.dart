@@ -85,7 +85,7 @@ class _SignupScreenState extends State<SignupScreen> {
           email: email,
           password: password,
           phoneNumber: phoneNumber);
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 

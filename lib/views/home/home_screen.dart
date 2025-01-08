@@ -5,9 +5,14 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Hello World'),
+        child: TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/profile');
+          },
+          child: const Text('Hello World'),
+        ),
       ),
     );
   }

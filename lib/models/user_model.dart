@@ -15,19 +15,25 @@ class User {
     this.address,
   });
 
-  void updateProfilePicUrl(String url) {
-    profilePicUrl = url;
+  Map<String, dynamic> toMap() {
+    return {
+      'fullName': fullName,
+      'email': email,
+      'password': password,
+      'phoneNumber': phoneNumber,
+      'address': address,
+      'profilePicUrl': profilePicUrl,
+    };
   }
 
-  void updateAddress(String address) {
-    this.address = address;
-  }
-
-  void updatePhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-  void updatePassword(String password) {
-    this.password = password;
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      fullName: map['fullName'],
+      email: map['email'],
+      password: map['password'],
+      phoneNumber: map['phoneNumber'],
+      address: map['address'],
+      profilePicUrl: map['profilePicUrl'],
+    );
   }
 }

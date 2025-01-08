@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Validate credentials
       if (userData['email'] == email && userData['password'] == password) {
         // Navigate to the Home Screen
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/home');
       } else {
         // Show error message
         ScaffoldMessenger.of(context).showSnackBar(
@@ -181,6 +181,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 16.0),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: Text(
+                      'Don\'t have an account? Sign Up',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
