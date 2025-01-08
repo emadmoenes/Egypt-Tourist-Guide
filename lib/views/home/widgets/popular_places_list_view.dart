@@ -1,5 +1,5 @@
 import 'package:egypt_tourist_guide/models/place_model.dart';
-import 'package:egypt_tourist_guide/views/home/widgets/place_wide_card.dart';
+import 'package:egypt_tourist_guide/views/widgets/place_card.dart';
 import 'package:flutter/material.dart';
 
 class PopularPlacesListView extends StatelessWidget {
@@ -14,7 +14,7 @@ class PopularPlacesListView extends StatelessWidget {
         horizontal: width*0.07,
       ),
       scrollDirection: Axis.horizontal,
-      itemBuilder: (context,counter)=> PlaceWideCard(place: popularPlacesList[counter],),
+      itemBuilder: (context,counter)=> PlaceCard(place: popularPlacesList[counter],isWide: true,),
       separatorBuilder: (context,counter)=> SizedBox(width: 20,),
       itemCount: popularPlacesList.length,
     );

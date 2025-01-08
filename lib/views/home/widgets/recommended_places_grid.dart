@@ -19,7 +19,7 @@ class RecommendedPlacesGrid extends StatelessWidget {
         crossAxisSpacing: width*0.04,
         mainAxisSpacing: width*0.04
       ),
-      itemBuilder: (context,counter)=> PlaceCard(place: recommendedPlaces[counter]),
+      itemBuilder: (context,counter)=> PlaceCard(place: recommendedPlaces[counter],isWide: false,),
       itemCount: recommendedPlaces.length,
     );
   }
