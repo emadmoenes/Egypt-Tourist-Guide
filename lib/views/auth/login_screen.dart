@@ -1,7 +1,6 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -97,11 +96,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20),
                   Text(
                     'Log In',
-                    style: GoogleFonts.lora(
-                      fontSize: 32,
+                    style: TextStyle(fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
+                      color: Colors.black87,),
                   ),
                   SizedBox(height: 25.0),
                   TextFormField(

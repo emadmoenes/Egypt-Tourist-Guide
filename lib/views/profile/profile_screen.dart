@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -66,8 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         automaticallyImplyLeading: false,
         title: Text(
           'Profile',
-          style: GoogleFonts.poppins(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.black.withOpacity(0.7),
@@ -111,8 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Profile Details',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                           IconButton(
                             icon: Icon(
                               _isEditing ? Icons.save : Icons.edit_note_rounded,
