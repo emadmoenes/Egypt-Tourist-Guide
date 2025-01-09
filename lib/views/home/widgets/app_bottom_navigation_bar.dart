@@ -2,15 +2,22 @@ import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AppBottomNavigationBar extends StatelessWidget {
+class AppBottomNavigationBar extends StatefulWidget {
   const AppBottomNavigationBar({super.key});
 
+  @override
+  State<AppBottomNavigationBar> createState() => _AppBottomNavigationBarState();
+}
+
+class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     return BottomNavigationBar(
       backgroundColor: Colors.purple,
-      onTap: homeCubit.changePageIndex,
+      onTap: (pageIndex) {
+        setState(() {homeCubit.currentPageIndex = pageIndex;});
+        },
       currentIndex: homeCubit.currentPageIndex,
       selectedItemColor: Colors.purple,
       unselectedItemColor: Colors.grey,

@@ -21,8 +21,4 @@ class HomeCubit extends Cubit<HomeStates> {
     fetchHomeData();
   }
 
-  void changePageIndex(pageIndex) {
-    currentPageIndex = pageIndex;
-    emit(HomeInitialState());
-  }
 }
