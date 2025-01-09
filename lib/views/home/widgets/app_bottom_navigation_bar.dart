@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
-  const AppBottomNavigationBar({super.key});
+  final Function settingState;
+  const AppBottomNavigationBar({super.key, required this.settingState});
 
   @override
   State<AppBottomNavigationBar> createState() => _AppBottomNavigationBarState();
@@ -17,6 +18,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
       backgroundColor: Colors.purple,
       onTap: (pageIndex) {
         setState(() {homeCubit.currentPageIndex = pageIndex;});
+        widget.settingState();
         },
       currentIndex: homeCubit.currentPageIndex,
       selectedItemColor: Colors.purple,

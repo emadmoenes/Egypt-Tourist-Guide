@@ -3,6 +3,8 @@ import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -40,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Profile updated successfully!'),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.purple,
         ),
       );
 
@@ -51,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Please fix the errors in the form.'),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.purple,
         ),
       );
     }
@@ -59,30 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Profile',
-          style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.black.withOpacity(0.7),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(10),
-            top: Radius.circular(10),
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.language, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Stack(
+    return Stack(
         children: [
           SingleChildScrollView(
             child: Padding(
@@ -103,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: 10),
                       Divider(
                         thickness: 1,
-                        color: Colors.grey,
+                        color: Colors.purple,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           IconButton(
                             icon: Icon(
                               _isEditing ? Icons.save : Icons.edit_note_rounded,
-                              color: Colors.black,
+                              color: Colors.purple,
                               size: 30,
                             ),
                             onPressed: () {
@@ -130,10 +109,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       Divider(
                         thickness: 1,
-                        color: Colors.grey,
+                        color: Colors.purple,
                       ),
                       Card(
-                        color: Colors.grey.withOpacity(0.1),
+                        color: Colors.purple.withOpacity(0.1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -243,7 +222,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ],
-      ),
     );
   }
 
