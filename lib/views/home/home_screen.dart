@@ -17,13 +17,16 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-          minimum: EdgeInsets.symmetric(vertical: 10),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        minimum: EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             PopularPlacesSection(),
             HomeSectionTitle(text: 'Recommended'),
             RecommendedPlacesSection()
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

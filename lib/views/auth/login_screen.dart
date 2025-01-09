@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool hiddenPassword = true;
+
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
@@ -91,8 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Form(
               key: _formKey,
               child: Column(
-                mainAxisSize: MainAxisSize
-                    .min, //tells main axis to take min amount of space to fit its children
+                mainAxisSize: MainAxisSize.min,
+                // tells main axis to take min amount of space to fit its children
                 children: [
                   SizedBox(height: 20),
                   Text(
@@ -141,9 +142,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           togglePasswordVisibility();
                         },
-                        icon: Icon(hiddenPassword
-                            ? Icons.visibility_off
-                            : Icons.visibility),
+                        icon: Icon(
+                          hiddenPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
                       ),
                     ),
                     validator: (value) {

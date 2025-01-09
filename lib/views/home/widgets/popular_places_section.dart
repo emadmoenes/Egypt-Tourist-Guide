@@ -12,24 +12,22 @@ class PopularPlacesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     return SizedBox(
-      height: width*0.81*0.75,
-      child: BlocBuilder<HomeCubit,HomeStates>(
-        builder: (context, state) {
-          if(state is HomeSuccessState){
-            if(state.data.isEmpty){
-              return const Text("There's no data to show");
-            } else {
-              return PopularPlacesListView(popularPlacesList: state.data);
-            }
-          }else if(state is HomeErrorState){
-            return AppErrorWidget();
-          }else{
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+      height: width * 0.81 * 0.75,
+      child: BlocBuilder<HomeCubit, HomeStates>(builder: (context, state) {
+        if (state is HomeSuccessState) {
+          if (state.data.isEmpty) {
+            return const Text("There's no data to show");
+          } else {
+            return PopularPlacesListView(popularPlacesList: state.data);
           }
+        } else if (state is HomeErrorState) {
+          return AppErrorWidget();
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
-      ),
+      }),
     );
   }
 }
