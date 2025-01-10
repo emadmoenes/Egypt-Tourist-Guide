@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SafeArea(
-          minimum: EdgeInsets.symmetric(vertical: 10),
+          minimum: EdgeInsets.symmetric(vertical: 11),
           child: Container(child: HomeScreen.screens[homeCubit.currentPageIndex].body)
       )
     );
