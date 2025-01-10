@@ -132,12 +132,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Column(
                         children: [
                           const SizedBox(height: 20),
-                          Text(
-                            'Sign Up',
-                            style: TextStyle(fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,)
-                          ),
+                          Text('Sign Up',
+                              style: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              )),
                           const SizedBox(height: 35),
                           TextFormField(
                             controller: _fullNameController,

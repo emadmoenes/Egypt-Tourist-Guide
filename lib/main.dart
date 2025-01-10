@@ -14,15 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'merriweather'
-      ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context)=> HomeCubit()..fetchHomeData(),)
-        ],
-        child: HomeScreen()
-      ),
+      theme: ThemeData(fontFamily: 'merriweather'),
+      home: MultiBlocProvider(providers: [
+        BlocProvider(
+          create: (context) => HomeCubit()..fetchHomeData(),
+        )
+      ], child: HomeScreen()),
     );
   }
 }
