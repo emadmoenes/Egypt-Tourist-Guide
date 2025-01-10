@@ -66,3 +66,26 @@ Route createRouteWithSlide({required Widget child}) {
     },
   );
 }
+
+//-- Custom page route to apply slide right transition --//
+class SlideRightRoute extends PageRouteBuilder {
+  final Widget child;
+
+  SlideRightRoute({required this.child})
+      : super(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation) => child,
+          transitionsBuilder: (BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+        );
+}

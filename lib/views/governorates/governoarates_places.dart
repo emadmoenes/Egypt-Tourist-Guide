@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GovernoratesPlaces extends StatefulWidget {
-  GovernoratesPlaces({
+  const GovernoratesPlaces({
     super.key,
   });
 

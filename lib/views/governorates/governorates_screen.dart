@@ -9,6 +9,13 @@ import '../../data.dart';
 class GovernoratesScreen extends StatelessWidget {
   const GovernoratesScreen({super.key});
 
+  //--- Get governorate data ---//
+  List<PlacesModel> getGovernorateData(String governorateId) {
+    return PLACES
+        .where((place) => place.governorateId == governorateId)
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<GovernorateModel> governorateList = GOVERNERATES;
@@ -59,10 +66,5 @@ class GovernoratesScreen extends StatelessWidget {
     );
   }
 
-//--- Get governorate data ---//
-  List<PlacesModel> getGovernorateData(String governorateId) {
-    return PLACES
-        .where((place) => place.governorateId == governorateId)
-        .toList();
-  }
+
 }
