@@ -28,23 +28,34 @@ class CurveDelayed extends Curve {
 }
 
 //-- Custom page route to apply fade transition --//
-Route createRouteWithFade({required Widget child}) {
-  return PageRouteBuilder(
-    transitionDuration: Duration(milliseconds: 2500),
-    reverseTransitionDuration: Duration(milliseconds: 2500),
-    pageBuilder: (context, animation, secondaryAnimation) => child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return FadeTransition(
-        opacity: animation.drive(Tween<double>(begin: 0, end: 1)
-            .chain(CurveTween(curve: const DelayedCurve()))),
-        child: FadeTransition(
-          opacity: secondaryAnimation.drive(Tween<double>(begin: 1, end: 0)
-              .chain(CurveTween(curve: const CurveDelayed()))),
-          child: child,
-        ),
-      );
-    },
-  );
+// The old page fades out, the new page fades in.
+class FadeTransitionRoute extends PageRouteBuilder {
+  final Widget child;
+
+  @override
+  Duration get transitionDuration => Duration(milliseconds: 2500);
+
+  @override
+  Duration get reverseTransitionDuration => Duration(milliseconds: 2500);
+
+  FadeTransitionRoute({required this.child})
+      : super(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) =>
+              child,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation.drive(Tween<double>(begin: 0, end: 1)
+                  .chain(CurveTween(curve: const DelayedCurve()))),
+              child: FadeTransition(
+                opacity: secondaryAnimation.drive(
+                    Tween<double>(begin: 1, end: 0)
+                        .chain(CurveTween(curve: const CurveDelayed()))),
+                child: child,
+              ),
+            );
+          },
+        );
 }
 
 //-- Custom page route to apply slide transition --//
@@ -74,7 +85,8 @@ class SlideRightRoute extends PageRouteBuilder {
   SlideRightRoute({required this.child})
       : super(
           pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) => child,
+                  Animation<double> secondaryAnimation) =>
+              child,
           transitionsBuilder: (BuildContext context,
               Animation<double> animation,
               Animation<double> secondaryAnimation,
