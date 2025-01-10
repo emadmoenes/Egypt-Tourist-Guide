@@ -65,6 +65,4 @@ class GovernoratesScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

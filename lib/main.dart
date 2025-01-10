@@ -1,9 +1,11 @@
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
+import 'package:egypt_tourist_guide/views/auth/login_screen.dart';
+import 'package:egypt_tourist_guide/views/auth/signup_screen.dart';
+import 'package:egypt_tourist_guide/views/governorates/governoarates_places.dart';
 import 'core/app_routes.dart';
 import 'package:egypt_tourist_guide/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'core/app_routes.dart';
 
 void main() {
   runApp(const MyApp());

@@ -29,8 +29,10 @@ class PlaceCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Color(0xffD0CBFF),
+            // Add shadow here
             boxShadow: [
               BoxShadow(
+                // Add color here
                 color: AppColors.greyColor.withOpacity(0.2),
                 spreadRadius: 1,
                 blurRadius: 2,

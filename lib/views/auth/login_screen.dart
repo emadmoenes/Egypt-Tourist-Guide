@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_routes.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -85,131 +84,132 @@ class _LoginScreenState extends State<LoginScreen> {
                 print('Change language');
               },
             ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                // tells main axis to take min amount of space to fit its children
-                children: [
-                  SizedBox(height: 20),
-                  Text(
-                    'Log In',
-                    style: TextStyle(fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,),
+          ),
+          Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              // tells main axis to take min amount of space to fit its children
+              children: [
+                SizedBox(height: 20),
+                Text(
+                  'Log In',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
                   ),
-                  SizedBox(height: 25.0),
-                  TextFormField(
-                    //Email field
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.black),
-                      hintText: 'name@domain.com',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.6),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-
-                      ),
-                    ),
-                    SizedBox(height: 25.0),
-                    TextFormField(
-                      //Email field
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.black),
-                        hintText: 'name@domain.com',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        filled: true,
-                        fillColor: Colors.white.withOpacity(0.6),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      validator: _validateEmail,
-                    ),
-                    SizedBox(height: 16.0),
-                    TextFormField(
-                      //Password field
-                      controller: passwordController,
-                      obscureText: hiddenPassword,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.black),
-                        hintText: 'Enter your password',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        filled: true,
-                        fillColor: Colors.white.withOpacity(0.6),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none,
-                        ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            togglePasswordVisibility();
-                          },
-                          icon: Icon(
-                            hiddenPassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value != null && value.isEmpty) {
-                          return 'Password Cannot be empty';
-                        }
-                        if (value!.length < 6) {
-                          // Check if the password is less than 6 characters
-                          return 'Password should contain at least 6 characters';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16.0),
-                    ElevatedButton(
-                      //Login button
-                      onPressed: _login,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromARGB(255, 4, 4, 4).withOpacity(0.8),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 50,
-                          vertical: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Text(
-                        'Login',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16.0),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.signupRoute);
-                      },
-                      child: Text(
-                        'Don\'t have an account? Sign Up',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
-              ),
+                SizedBox(height: 25.0),
+                TextFormField(
+                  //Email field
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.black),
+                    hintText: 'name@domain.com',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.6),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 25.0),
+                TextFormField(
+                  //Email field
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.black),
+                    hintText: 'name@domain.com',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.6),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  validator: _validateEmail,
+                ),
+                SizedBox(height: 16.0),
+                TextFormField(
+                  //Password field
+                  controller: passwordController,
+                  obscureText: hiddenPassword,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(color: Colors.black),
+                    hintText: 'Enter your password',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.6),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        togglePasswordVisibility();
+                      },
+                      icon: Icon(
+                        hiddenPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return 'Password Cannot be empty';
+                    }
+                    if (value!.length < 6) {
+                      // Check if the password is less than 6 characters
+                      return 'Password should contain at least 6 characters';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                  //Login button
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        const Color.fromARGB(255, 4, 4, 4).withOpacity(0.8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 50,
+                      vertical: 15,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    'Login',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.signupRoute);
+                  },
+                  child: Text(
+                    'Don\'t have an account? Sign Up',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

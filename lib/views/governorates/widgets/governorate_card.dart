@@ -30,13 +30,13 @@ class GovernorateCard extends StatelessWidget {
           height: baseContainerHeight,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(10),
             color: AppColors.containerColor,
             boxShadow: [
               BoxShadow(
                 color: AppColors.greyColor.withOpacity(0.2),
-                spreadRadius: 1,
-                blurRadius: 2,
+                spreadRadius: 2,
+                blurRadius: 3,
                 offset: Offset(2, 6),
               ),
             ],
@@ -45,9 +45,9 @@ class GovernorateCard extends StatelessWidget {
           ),
           alignment: Alignment.bottomCenter,
           child: GreyContainer(
-              baseContainerHeight: baseContainerHeight,
-              governorate: governorate,
-              textFactor: textFactor,
+            baseContainerHeight: baseContainerHeight,
+            governorate: governorate,
+            textFactor: textFactor,
           ),
         ),
       ),
@@ -72,11 +72,14 @@ class GreyContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: baseContainerHeight * 0.22,
+      height: baseContainerHeight * 0.21,
       alignment: Alignment.center,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+        ),
         color: AppColors.greyColor,
       ),
       child: Column(

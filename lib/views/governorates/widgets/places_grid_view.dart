@@ -14,11 +14,11 @@ class GovernoratesPlacesGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.07),
+      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: width * 0.03, //0.04
+        crossAxisSpacing: width * 0.03,
         mainAxisSpacing: width * 0.04,
       ),
       itemBuilder: (context, counter) => PlaceCard(

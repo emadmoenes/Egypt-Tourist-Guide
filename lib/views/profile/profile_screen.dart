@@ -289,38 +289,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
     );
   }
-
-  /* ------------- Methods ---------------- */
-  // Load user data method
-  Future<void> _loadUserData() async {
-    final user = await _profileController.loadUserData();
-    setState(() {
-      _user = user;
-    });
-  }
-
-  // Update user data method
-  Future<void> _updateProfile() async {
-    if (_formKey.currentState!.validate()) {
-      await _profileController.updateUserData(_user);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Profile updated successfully!'),
-          backgroundColor: Colors.green,
-        ),
-      );
-
-      setState(() {
-        _isEditing = false;
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Please fix the errors in the form.'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
-  }
 }
