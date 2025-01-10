@@ -1,8 +1,7 @@
-import 'package:egypt_tourist_guide/core/app_strings_en.dart';
-
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
 import 'package:egypt_tourist_guide/models/screen_model.dart';
 import 'package:egypt_tourist_guide/views/favorites/favorites_screen.dart';
+import 'package:egypt_tourist_guide/views/governorates/governorates_screen.dart';
 
 import 'package:egypt_tourist_guide/views/home/widgets/app_bottom_navigation_bar.dart';
 import 'package:egypt_tourist_guide/views/home/widgets/home_screen_body.dart';
@@ -19,7 +18,7 @@ class HomeScreen extends StatefulWidget {
   static const List<ScreenModel> screens = [
     ScreenModel(title: 'Egypt Tourist Guide', body: HomeScreenBody()),
     ScreenModel(title: 'Favourites', body: FavoritesScreen()),
-    ScreenModel(title: 'Places', body: HomeScreenBody()),
+    ScreenModel(title: 'Places', body: GovernoratesScreen()),
     ScreenModel(title: 'Settings', body: ProfileScreen()),
   ];
 
@@ -36,10 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     return Scaffold(
-
         bottomNavigationBar: AppBottomNavigationBar(
           settingState: settingState,
-
         ),
         appBar: AppBar(
           title: Text(
