@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         title: 'Egypt Tourist Guide',
         theme:
             ThemeData(fontFamily: 'merriweather', primarySwatch: Colors.blue),
-        home: const HomeScreen(), // Set the initial screen to LoginScreen
+        home: ProfileScreen(),
         routes: {
           '/signup': (context) => const SignupScreen(),
           '/login': (context) => const LoginScreen(),
