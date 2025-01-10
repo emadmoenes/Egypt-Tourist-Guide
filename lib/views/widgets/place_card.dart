@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
 import 'package:egypt_tourist_guide/models/place_model.dart';
 import 'package:flutter/material.dart';
@@ -53,43 +54,45 @@ class PlaceCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          place.name,
-                          style: TextStyle(
-                              fontSize: textFactor * 14,
-                              color: AppColors.white,
-                              overflow: TextOverflow.ellipsis),
-                          maxLines: 1,
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            place.name,
+                            style: TextStyle(
+                                fontSize: textFactor * 14,
+                                color: AppColors.white,
+                                overflow: TextOverflow.ellipsis),
+                            maxLines: 1,
+                          ),
                         ),
-                      ),
-                      /*------- Favourite icon -------*/
-                      InkWell(
-                        onTap: () {
-                          homeCubit.togglingFavourite(place: place);
-                          onFavoriteToggled?.call();
-                        },
-                        child: CircleAvatar(
-
-                            backgroundColor: Colors.white,
-                            maxRadius: 10,
-                            child: place.isFav
-                                ? Icon(
-                                    Icons.favorite_rounded,
-                                    color: Color(0xffFF54A0),
-                                    size: 10,
-                                  )
-                                : Icon(
-                                    Icons.favorite_outline_rounded,
-                                    color: Colors.black,
-                                    size: 10,
-                                  )),
-
-                      )
-                    ],
+                        /*------- Favourite icon -------*/
+                        InkWell(
+                          onTap: () {
+                            homeCubit.togglingFavourite(place: place,isArabic: context.locale.toString() == 'ar');
+                            onFavoriteToggled?.call();
+                          },
+                          child: CircleAvatar(
+                    
+                              backgroundColor: Colors.white,
+                              maxRadius: 10,
+                              child: place.isFav
+                                  ? Icon(
+                                      Icons.favorite_rounded,
+                                      color: Color(0xffFF54A0),
+                                      size: 10,
+                                    )
+                                  : Icon(
+                                      Icons.favorite_outline_rounded,
+                                      color: Colors.black,
+                                      size: 10,
+                                    )),
+                    
+                        )
+                      ],
+                    ),
                   ),
                   Text(
                     place.description,

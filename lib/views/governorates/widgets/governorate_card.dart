@@ -25,29 +25,32 @@ class GovernorateCard extends StatelessWidget {
       onTap: onTap,
       // Go to governorate places
       child: Card(
-        child: Container(
-          width: width * 0.81,
-          height: baseContainerHeight,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: AppColors.containerColor,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.greyColor.withOpacity(0.2),
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: Offset(2, 6),
-              ),
-            ],
-            image: DecorationImage(
-                image: AssetImage(governorate.image), fit: BoxFit.fill),
-          ),
-          alignment: Alignment.bottomCenter,
-          child: GreyContainer(
-              baseContainerHeight: baseContainerHeight,
-              governorate: governorate,
-              textFactor: textFactor,
+        child: Hero(
+          tag: "hero-${governorate.id}",
+          child: Container(
+            width: width * 0.81,
+            height: baseContainerHeight,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: AppColors.containerColor,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.greyColor.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: Offset(2, 6),
+                ),
+              ],
+              image: DecorationImage(
+                  image: AssetImage(governorate.image), fit: BoxFit.fill),
+            ),
+            alignment: Alignment.bottomCenter,
+            child: GreyContainer(
+                baseContainerHeight: baseContainerHeight,
+                governorate: governorate,
+                textFactor: textFactor,
+            ),
           ),
         ),
       ),
@@ -76,7 +79,10 @@ class GreyContainer extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(10),
+          bottomLeft: Radius.circular(10)
+        ),
         color: AppColors.greyColor,
       ),
       child: Column(

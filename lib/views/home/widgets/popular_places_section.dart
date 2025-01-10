@@ -1,5 +1,6 @@
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
 import 'package:egypt_tourist_guide/controllers/home_controller/home_states.dart';
+import 'package:egypt_tourist_guide/data.dart';
 import 'package:egypt_tourist_guide/views/home/widgets/popular_places_list_view.dart';
 import 'package:egypt_tourist_guide/views/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class PopularPlacesSection extends StatelessWidget {
               child: Text('no_data'.tr()),
             );
           } else {
-            return PopularPlacesListView(popularPlacesList: state.data);
+            return PopularPlacesListView(popularPlacesList: context.locale.toString() == 'ar' ? ARABICPLACES:PLACES);
           }
         } else if (state is HomeErrorState) {
           return AppErrorWidget();

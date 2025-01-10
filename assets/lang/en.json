@@ -31,8 +31,8 @@
   "places_title": "Places",
   "settings_title": "Settings",
   "home": "Home",
-  "liked": "Liked",
-  "places": "Places",
+  "liked": "Favourites",
+  "places": "Governorates",
   "settings": "Settings",
   "recommended": "Recommended",
   "no_data": "There's no data to show",
@@ -43,5 +43,9 @@
   "profile_details": "Profile Details",
   "validation_phone_number_empty": "Phone number is required",
   "validation_phone_number_invalid": "Enter a valid phone number",
-  "validation_address_empty": "Address is required"
+  "validation_address_empty": "Address is required",
+  "appTitle": "Egypt Tourist Guide",
+  "governorates": "Governorates",
+  "landmarks": "Landmarks",
+  "logout": "Log Out"
 }

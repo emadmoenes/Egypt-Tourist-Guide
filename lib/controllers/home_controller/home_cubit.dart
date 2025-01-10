@@ -13,8 +13,12 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(HomeSuccessState(data: PLACES));
   }
 
-  void togglingFavourite({required PlacesModel place}) {
+  void togglingFavourite({required PlacesModel place,required bool isArabic}) {
     final index = PLACES.indexWhere((p) => p.id == place.id);
+    if(isArabic){
+      ARABICPLACES[index].isFav = !ARABICPLACES[index].isFav;
+      emit(HomeSuccessState(data: ARABICPLACES));
+    }
     if (index != -1) {
       PLACES[index].isFav = !PLACES[index].isFav;
       emit(HomeSuccessState(data: PLACES));

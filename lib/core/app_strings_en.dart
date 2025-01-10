@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class AppStringEn {
-  static const String appTitle = "Egypt Tourist Guide";
-  static const String governorates = 'Governorates';
-  static const String landmarks = 'Landmarks';
+  static String get appTitle => 'appTitle'.tr();
+  static String get governorates => 'governorates'.tr();
+  static String get landmarks => 'landmarks'.tr();
 }

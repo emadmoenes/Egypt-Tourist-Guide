@@ -3,6 +3,8 @@ import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../core/app_routes.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -224,12 +226,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, AppRoutes.loginRoute);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text('logout'.tr(),style: TextStyle(color: Colors.white,fontSize: 18),)
+                      )
                     ],
                   ),
                 ),
               ),
             ),
           ),
+
         ],
       ),
     );

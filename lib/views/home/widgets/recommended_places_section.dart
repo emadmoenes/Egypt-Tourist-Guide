@@ -4,6 +4,7 @@ import 'package:egypt_tourist_guide/views/home/widgets/recommended_places_grid.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../../../data.dart';
 import '../../widgets/error_widget.dart';
 
 class RecommendedPlacesSection extends StatelessWidget {
@@ -24,7 +25,7 @@ class RecommendedPlacesSection extends StatelessWidget {
               } else {
                 return Expanded(
                   child: RecommendedPlacesGrid(
-                    recommendedPlaces: state.data,
+                    recommendedPlaces:  context.locale.toString() == 'ar' ? ARABICPLACES:PLACES,
                   ),
                 );
               }

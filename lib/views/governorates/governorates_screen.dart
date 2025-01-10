@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:egypt_tourist_guide/core/app_routes.dart';
 import 'package:egypt_tourist_guide/models/governorate_model.dart';
 import 'package:egypt_tourist_guide/models/place_model.dart';
@@ -8,20 +9,26 @@ import '../../data.dart';
 class GovernoratesScreen extends StatelessWidget {
   const GovernoratesScreen({super.key});
 
-  //--- Get governorate data ---//
-  List<PlacesModel> getGovernorateData(String governorateId) {
-    return PLACES
-        .where((place) => place.governorateId == governorateId)
-        .toList();
-  }
+
 
   @override
   Widget build(BuildContext context) {
-    final List<GovernorateModel> governorateList = GOVERNERATES;
+    final List<GovernorateModel> governorateList = context.locale.toString() == 'ar' ? ARABICGOVERNORATES:GOVERNERATES;
     //HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
 
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
+
+    //--- Get governorate data ---//
+    List<PlacesModel> getGovernorateData(String governorateId) {
+      return context.locale.toString() == 'ar' ?
+      ARABICPLACES.where((place) => place.governorateId == governorateId).toList():
+      PLACES.where((place) => place.governorateId == governorateId).toList();
+      ;
+
+
+    }
+
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: ListView.separated(
@@ -40,7 +47,7 @@ class GovernoratesScreen extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 AppRoutes.placesRoute,
-                arguments: {'1': listOfPlaces, '2': governorate.name},
+                arguments: {'1': listOfPlaces, '2': governorate},
               );
             },
           );

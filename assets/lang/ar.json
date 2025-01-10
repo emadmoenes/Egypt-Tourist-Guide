@@ -38,11 +38,14 @@
   "no_data": "لا توجد بيانات لعرضها",
   "error_message": "حدث خطأ. يرجى المحاولة مرة أخرى لاحقًا.",
   "unknown_error": "خطأ غير معروف",
-
   "fix_form_errors": "الرجاء إصلاح الأخطاء في النموذج.",
   "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح!",
   "profile_details": "تفاصيل الملف الشخصي",
   "validation_phone_number_empty": "رقم الهاتف مطلوب",
   "validation_phone_number_invalid": "أدخل رقم هاتف صالح",
-  "validation_address_empty": "العنوان مطلوب"
+  "validation_address_empty": "العنوان مطلوب",
+  "appTitle": "دليل السياحة في مصر",
+  "governorates": "المحافظات",
+  "landmarks": "المعالم",
+  "logout": "تسجيل خروج"
 }
