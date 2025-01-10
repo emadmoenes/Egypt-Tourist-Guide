@@ -6,10 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PlaceCard extends StatelessWidget {
   final PlacesModel place;
   final bool isWide;
+  final VoidCallback? onFavoriteToggled;
+
   const PlaceCard({
     super.key,
     required this.place,
     required this.isWide,
+    this.onFavoriteToggled,
   });
 
   @override
@@ -55,19 +58,20 @@ class PlaceCard extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           homeCubit.togglingFavourite(place: place);
+                          onFavoriteToggled?.call();
                         },
                         child: CircleAvatar(
                             backgroundColor: Colors.white,
                             maxRadius: 10,
                             child: place.isFav
                                 ? Icon(
-                                    Icons.favorite_outline_rounded,
-                                    color: Colors.black,
+                                    Icons.favorite_rounded,
+                                    color: Color(0xffFF54A0),
                                     size: 10,
                                   )
                                 : Icon(
-                                    Icons.favorite_rounded,
-                                    color: Color(0xffFF54A0),
+                                    Icons.favorite_outline_rounded,
+                                    color: Colors.black,
                                     size: 10,
                                   )),
                       )

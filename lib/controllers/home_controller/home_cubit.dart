@@ -6,19 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
   int currentPageIndex = 0;
+  List<PlacesModel> get places => PLACES;
 
   void fetchHomeData() {
     emit(HomeLoadingState());
     emit(HomeSuccessState(data: PLACES));
   }
 
-  togglingFavourite({required PlacesModel place}) {
-    PLACES
-        .firstWhere(
-          (placeItem) => placeItem.id == place.id,
-        )
-        .isFav = !place.isFav;
-    fetchHomeData();
+  void togglingFavourite({required PlacesModel place}) {
+    final index = PLACES.indexWhere((p) => p.id == place.id);
+    if (index != -1) {
+      PLACES[index].isFav = !PLACES[index].isFav;
+      emit(HomeSuccessState(data: PLACES));
+    }
   }
-
 }

@@ -6,12 +6,12 @@ class PlacesModel {
   final String image;
   bool isFav;
 
-  PlacesModel(
-      {required this.id,
-      required this.governorateId,
-      required this.name,
-      required this.description,
-      required this.image,
-      required this.isFav,
-      });
+  PlacesModel({
+    required this.id,
+    required this.governorateId,
+    required this.name,
+    required this.description,
+    required this.image,
+    required this.isFav,
+  });
 }
