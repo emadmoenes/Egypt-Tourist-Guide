@@ -27,37 +27,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _loadUserData();
   }
 
-  Future<void> _loadUserData() async {
-    final user = await _profileController.loadUserData();
-    setState(() {
-      _user = user;
-    });
-  }
-
-  Future<void> _updateProfile() async {
-    if (_formKey.currentState!.validate()) {
-      await _profileController.updateUserData(_user);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Profile updated successfully!'),
-          backgroundColor: Colors.green,
-        ),
-      );
-
-      setState(() {
-        _isEditing = false;
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Please fix the errors in the form.'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +36,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text(
           'Profile',
           style: GoogleFonts.poppins(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.black.withOpacity(0.7),
@@ -78,6 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         actions: [
+          // change language button
           IconButton(
             icon: const Icon(Icons.language, color: Colors.white),
             onPressed: () {},
@@ -250,6 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+////////////////////////////
   Widget _buildEditableField({
     required String label,
     required String value,
@@ -309,5 +283,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
       ],
     );
+  }
+
+  /* ------------- Methods ---------------- */
+  // Load user data method
+  Future<void> _loadUserData() async {
+    final user = await _profileController.loadUserData();
+    setState(() {
+      _user = user;
+    });
+  }
+
+  // Update user data method
+  Future<void> _updateProfile() async {
+    if (_formKey.currentState!.validate()) {
+      await _profileController.updateUserData(_user);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Profile updated successfully!'),
+          backgroundColor: Colors.green,
+        ),
+      );
+
+      setState(() {
+        _isEditing = false;
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please fix the errors in the form.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 }

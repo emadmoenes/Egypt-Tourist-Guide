@@ -20,9 +20,10 @@ class RecommendedPlacesSection extends StatelessWidget {
                 return const Text("There's no data to show");
               } else {
                 return Expanded(
-                    child: RecommendedPlacesGrid(
-                  recommendedPlaces: state.data,
-                ));
+                  child: RecommendedPlacesGrid(
+                    recommendedPlaces: state.data,
+                  ),
+                );
               }
             } else if (state is HomeErrorState) {
               return AppErrorWidget();

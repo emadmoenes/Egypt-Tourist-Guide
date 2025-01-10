@@ -2,10 +2,12 @@ import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart'
 import 'package:egypt_tourist_guide/models/place_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../core/app_colors.dart';
 
 class PlaceCard extends StatelessWidget {
   final PlacesModel place;
   final bool isWide;
+
   const PlaceCard({
     super.key,
     required this.place,
@@ -24,6 +26,14 @@ class PlaceCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Color(0xffD0CBFF),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.greyColor.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 2,
+                offset: Offset(2, 6),
+              ),
+            ],
             image: DecorationImage(
                 image: AssetImage(place.image), fit: BoxFit.fill)),
         alignment: Alignment.bottomCenter,
@@ -44,32 +54,35 @@ class PlaceCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                          child: Text(
-                        place.name,
-                        style: TextStyle(
-                            fontSize: textFactor * 14,
-                            color: Colors.white,
-                            overflow: TextOverflow.ellipsis),
-                        maxLines: 1,
-                      )),
+                        child: Text(
+                          place.name,
+                          style: TextStyle(
+                              fontSize: textFactor * 14,
+                              color: AppColors.white,
+                              overflow: TextOverflow.ellipsis),
+                          maxLines: 1,
+                        ),
+                      ),
+                      /*------- Favourite icon -------*/
                       InkWell(
                         onTap: () {
                           homeCubit.togglingFavourite(place: place);
                         },
                         child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            maxRadius: 10,
-                            child: place.isFav
-                                ? Icon(
-                                    Icons.favorite_outline_rounded,
-                                    color: Colors.black,
-                                    size: 10,
-                                  )
-                                : Icon(
-                                    Icons.favorite_rounded,
-                                    color: Color(0xffFF54A0),
-                                    size: 10,
-                                  )),
+                          backgroundColor: AppColors.white,
+                          maxRadius: 10,
+                          child: place.isFav
+                              ? Icon(
+                                  Icons.favorite_outline_rounded,
+                                  color: Colors.black,
+                                  size: 10,
+                                )
+                              : Icon(
+                                  Icons.favorite_rounded,
+                                  color: AppColors.favoriteIconColor,
+                                  size: 10,
+                                ),
+                        ),
                       )
                     ],
                   ),

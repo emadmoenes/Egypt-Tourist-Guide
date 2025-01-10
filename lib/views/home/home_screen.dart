@@ -1,3 +1,4 @@
+import 'package:egypt_tourist_guide/core/app_strings_en.dart';
 import 'package:egypt_tourist_guide/views/home/widgets/app_bottom_navigation_bar.dart';
 import 'package:egypt_tourist_guide/views/home/widgets/home_section_title.dart';
 import 'package:egypt_tourist_guide/views/home/widgets/popular_places_section.dart';
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: AppBottomNavigationBar(),
       appBar: AppBar(
         title: Text(
-          "Egypt Tourist Guide",
+          AppStringEn.appTitle,
         ),
       ),
       body: SafeArea(
