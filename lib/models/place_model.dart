@@ -1,6 +1,6 @@
 class PlacesModel {
   final int id;
-  final int governorateId;
+  final String governorateId;
   final String name;
   final String description;
   final String image;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class PopularPlacesListView extends StatelessWidget {
   final List<PlacesModel> popularPlacesList;
+
   const PopularPlacesListView({super.key, required this.popularPlacesList});
 
   @override
@@ -11,11 +12,16 @@ class PopularPlacesListView extends StatelessWidget {
     double width = MediaQuery.sizeOf(context).width;
     return ListView.separated(
       padding: EdgeInsets.symmetric(
-        horizontal: width*0.07,
+        horizontal: width * 0.07,
       ),
       scrollDirection: Axis.horizontal,
-      itemBuilder: (context,counter)=> PlaceCard(place: popularPlacesList[counter],isWide: true,),
-      separatorBuilder: (context,counter)=> SizedBox(width: 20,),
+      itemBuilder: (context, counter) => PlaceCard(
+        place: popularPlacesList[counter],
+        isWide: true,
+      ),
+      separatorBuilder: (context, counter) => SizedBox(
+        width: 20,
+      ),
       itemCount: popularPlacesList.length,
     );
   }

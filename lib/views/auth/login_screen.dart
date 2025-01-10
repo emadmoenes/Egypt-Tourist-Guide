@@ -2,6 +2,9 @@ import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/app_routes.dart';
+
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -12,6 +15,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool hiddenPassword = true;
 
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  AuthController authController = AuthController();
+
+  /*--------------- Methods -----------------*/
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
@@ -30,11 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
       hiddenPassword = !hiddenPassword;
     });
   }
-
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  AuthController authController = AuthController();
 
   void _login() async {
     if (_formKey.currentState!.validate()) {
@@ -58,35 +62,28 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  /*-------------- End of Methods ----------------*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Positioned.fill(
-          // image stretches to fill entire space of stack.
-          child: Image.asset(
-            'assets/images/pyramids.png',
-            fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            // image stretches to fill entire space of stack.
+            child: Image.asset(
+              'assets/images/pyramids.png',
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        Positioned(
-          top: 40,
-          right: 16,
-          child: IconButton(
-            icon: Icon(Icons.language, color: Colors.white, size: 30),
-            onPressed: () {
-              print('Change language');
-            },
-          ),
-        ),
-        Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(20),
+          Positioned(
+            top: 40,
+            right: 16,
+            child: IconButton(
+              icon: Icon(Icons.language, color: Colors.white, size: 30),
+              onPressed: () {
+                print('Change language');
+              },
             ),
             child: Form(
               key: _formKey,
@@ -115,90 +112,108 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
+
                       ),
                     ),
-                    validator: _validateEmail,
-                  ),
-                  SizedBox(height: 16.0),
-                  TextFormField(
-                    //Password field
-                    controller: passwordController,
-                    obscureText: hiddenPassword,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(color: Colors.black),
-                      hintText: 'Enter your password',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.6),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
+                    SizedBox(height: 25.0),
+                    TextFormField(
+                      //Email field
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: 'name@domain.com',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.6),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          togglePasswordVisibility();
-                        },
-                        icon: Icon(
-                          hiddenPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                      validator: _validateEmail,
+                    ),
+                    SizedBox(height: 16.0),
+                    TextFormField(
+                      //Password field
+                      controller: passwordController,
+                      obscureText: hiddenPassword,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: 'Enter your password',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.6),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none,
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            togglePasswordVisibility();
+                          },
+                          icon: Icon(
+                            hiddenPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value != null && value.isEmpty) {
+                          return 'Password Cannot be empty';
+                        }
+                        if (value!.length < 6) {
+                          // Check if the password is less than 6 characters
+                          return 'Password should contain at least 6 characters';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.0),
+                    ElevatedButton(
+                      //Login button
+                      onPressed: _login,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 4, 4, 4).withOpacity(0.8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 50,
+                          vertical: 15,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Text(
+                        'Login',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                    validator: (value) {
-                      if (value != null && value.isEmpty) {
-                        return 'Password Cannot be empty';
-                      }
-                      if (value!.length < 6) {
-                        // Check if the password is less than 6 characters
-                        return 'Password should contain at least 6 characters';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 16.0),
-                  ElevatedButton(
-                    //Login button
-                    onPressed: _login,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color.fromARGB(255, 4, 4, 4).withOpacity(0.8),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 50,
-                        vertical: 15,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    SizedBox(height: 16.0),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.signupRoute);
+                      },
+                      child: Text(
+                        'Don\'t have an account? Sign Up',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                    child: Text(
-                      'Login',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16.0),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
-                    },
-                    child: Text(
-                      'Don\'t have an account? Sign Up',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }

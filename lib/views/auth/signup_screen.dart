@@ -1,5 +1,7 @@
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import 'package:flutter/material.dart';
+import '../../core/app_routes.dart';
+
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -15,10 +17,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _phoneController = TextEditingController();
-
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
 
+  /*----------- Methods -----------*/
   String? _validateFullName(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your full name';
@@ -84,9 +86,11 @@ class _SignupScreenState extends State<SignupScreen> {
           email: email,
           password: password,
           phoneNumber: phoneNumber);
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
     }
   }
+
+  /*----------- End of Methods -----------*/
 
   @override
   Widget build(BuildContext context) {
@@ -254,13 +258,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           const SizedBox(height: 35),
                           ElevatedButton(
-                            child: const Text(
-                              'Sign Up',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),
-                            ),
                             onPressed: _signUp,
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -274,6 +271,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
+                            child: const Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
                           )
                         ],
                       ),
@@ -283,6 +287,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             )
           ],
-        ));
+        ),
+    );
   }
 }
