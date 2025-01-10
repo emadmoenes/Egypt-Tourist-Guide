@@ -1,7 +1,7 @@
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../core/app_routes.dart';
+
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -136,14 +136,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Column(
                         children: [
                           const SizedBox(height: 20),
-                          Text(
-                            'Sign Up',
-                            style: GoogleFonts.lora(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          ),
+                          Text('Sign Up',
+                              style: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              )),
                           const SizedBox(height: 35),
                           TextFormField(
                             controller: _fullNameController,

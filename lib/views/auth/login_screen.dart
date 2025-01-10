@@ -1,8 +1,9 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import '../../core/app_routes.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -84,28 +85,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 print('Change language');
               },
             ),
-          ),
-          Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.9,
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  // tells main axis to take min amount of space to fit its children
-                  children: [
-                    SizedBox(height: 20),
-                    Text(
-                      'Log In',
-                      style: GoogleFonts.lora(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                // tells main axis to take min amount of space to fit its children
+                children: [
+                  SizedBox(height: 20),
+                  Text(
+                    'Log In',
+                    style: TextStyle(fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,),
+                  ),
+                  SizedBox(height: 25.0),
+                  TextFormField(
+                    //Email field
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintText: 'name@domain.com',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.6),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+
                       ),
                     ),
                     SizedBox(height: 25.0),

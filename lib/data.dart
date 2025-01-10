@@ -8,33 +8,41 @@ final List<GovernorateModel> GOVERNERATES = [
     id: '1',
     name: 'Alexandria',
     description: 'A historic Mediterranean port city in Egypt.',
-    image: AppImages.alex, // Use one image for Alexandria
+ // Use one image for Alexandria
+
+    image: 'assets/cities/alexandria/stanley_bridge2.jpg', // Use one image for Alexandria
+
   ),
   GovernorateModel(
     id: '2',
     name: 'Cairo',
     description: 'The bustling capital of Egypt, home to ancient wonders and modern attractions.',
-    image: AppImages.cairo, // Use one image for Cairo
+
+    image: 'assets/cities/cairo/cairo.jpg', // Use one image for Cairo
+
   ),
   GovernorateModel(
     id: '3',
     name: 'Giza',
+
     description: 'The world-famous for the Pyramids of Giza, the Great Sphinx, and the Giza Plateau..',
-    image: AppImages.giza, // Use one image for Giza
+    image: 'assets/cities/giza/pyramids.jpg', // Use one image for Giza
+
   ),
   GovernorateModel(
     id: '4',
     name: 'Hurghada',
-    description:
-        'A popular Red Sea resort town known for its beaches and diving spots.',
-    image: AppImages.hurghada, // Use one image for Hurghada
+    description: 'A popular Red Sea resort town known for its beaches and diving spots.',
+    image: 'assets/cities/hurghada/hurghada.jpg', // Use one image for Hurghada
+
   ),
   GovernorateModel(
     id: '5',
     name: 'Luxor',
-    description:
-        'Known as the world\'s greatest open-air museum, with ancient temples and tombs.',
-    image: AppImages.luxor, // Use one image for Luxor
+
+    description: 'Known as the world\'s greatest open-air museum, with ancient temples and tombs.',
+    image: 'assets/cities/luxor/luxor.jpg', // Use one image for Luxor
+
   ),
 ];
 
