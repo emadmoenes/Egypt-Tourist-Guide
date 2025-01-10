@@ -1,6 +1,7 @@
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
   final Function settingState;
@@ -17,20 +18,31 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
     return BottomNavigationBar(
       backgroundColor: Colors.purple,
       onTap: (pageIndex) {
-        setState(() {homeCubit.currentPageIndex = pageIndex;});
+        setState(() {
+          homeCubit.currentPageIndex = pageIndex;
+        });
         widget.settingState();
-        },
+      },
       currentIndex: homeCubit.currentPageIndex,
       selectedItemColor: Colors.purple,
       unselectedItemColor: Colors.grey,
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline_rounded), label: 'Liked'),
+          icon: Icon(Icons.home_outlined),
+          label: 'home'.tr(),
+        ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.location_on_outlined), label: 'Places'),
+          icon: Icon(Icons.favorite_outline_rounded),
+          label: 'liked'.tr(),
+        ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_outlined), label: 'Settings'),
+          icon: Icon(Icons.location_on_outlined),
+          label: 'places'.tr(),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle_outlined),
+          label: 'settings'.tr(),
+        ),
       ],
     );
   }

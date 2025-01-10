@@ -1,6 +1,7 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../core/app_routes.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -21,13 +22,13 @@ class _LoginScreenState extends State<LoginScreen> {
   /*--------------- Methods -----------------*/
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your email';
+      return 'validation_email'.tr();
     }
     if (!value.contains('@')) {
-      return 'email should contain "@"';
+      return 'validation_email_at'.tr();
     }
     if (!value.contains('.')) {
-      return 'email should contain "."';
+      return 'validation_email_dot'.tr();
     }
     return null;
   }
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         // Show error message
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid email or password')),
+          SnackBar(content: Text('invalid_credentials'.tr())),
         );
       }
     }
@@ -80,7 +81,11 @@ class _LoginScreenState extends State<LoginScreen> {
             child: IconButton(
               icon: const Icon(Icons.language, color: Colors.white, size: 30),
               onPressed: () {
-                print('Change language');
+                // Toggle between English and Arabic
+                final newLocale = context.locale.languageCode == 'en'
+                    ? Locale('ar')
+                    : Locale('en');
+                context.setLocale(newLocale);
               },
             ),
           ),
@@ -94,8 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const SizedBox(height: 20),
-                      const Text(
-                        'Log In',
+                      Text(
+                        'login'.tr(),
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -107,9 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Email field
                         controller: emailController,
                         decoration: InputDecoration(
-                          labelText: 'Email',
+                          labelText: 'email'.tr(),
                           labelStyle: const TextStyle(color: Colors.black),
-                          hintText: 'name@domain.com',
+                          hintText: 'email_hint'.tr(),
                           hintStyle: const TextStyle(color: Colors.grey),
                           filled: true,
                           fillColor: Colors.white.withOpacity(0.6),
@@ -126,9 +131,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: passwordController,
                         obscureText: hiddenPassword,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'password'.tr(),
                           labelStyle: const TextStyle(color: Colors.black),
-                          hintText: 'Enter your password',
+                          hintText: 'password_hint'.tr(),
                           hintStyle: const TextStyle(color: Colors.grey),
                           filled: true,
                           fillColor: Colors.white.withOpacity(0.6),
@@ -147,10 +152,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         validator: (value) {
                           if (value != null && value.isEmpty) {
-                            return 'Password Cannot be empty';
+                            return 'validation_password_empty'.tr();
                           }
                           if (value!.length < 6) {
-                            return 'Password should contain at least 6 characters';
+                            return 'validation_password_length'.tr();
                           }
                           return null;
                         },
@@ -160,8 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Login button
                         onPressed: _login,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                          const Color.fromARGB(255, 4, 4, 4).withOpacity(0.8),
+                          backgroundColor: const Color.fromARGB(255, 4, 4, 4)
+                              .withOpacity(0.8),
                           padding: const EdgeInsets.symmetric(
                             horizontal: 50,
                             vertical: 15,
@@ -170,9 +175,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(
+                        child: Text(
+                          'login'.tr(),
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           ),
@@ -183,9 +188,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           Navigator.pushNamed(context, AppRoutes.signupRoute);
                         },
-                        child: const Text(
-                          'Don\'t have an account? Sign Up',
-                          style: TextStyle(
+                        child: Text(
+                          'signup_prompt'.tr(),
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16,
                           ),

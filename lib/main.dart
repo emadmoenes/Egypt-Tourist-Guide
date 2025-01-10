@@ -6,9 +6,20 @@ import 'package:egypt_tourist_guide/views/governorates/governoarates_places.dart
 import 'package:egypt_tourist_guide/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/lang',
+      fallbackLocale: const Locale('en'),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,13 +36,16 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'merriweather'),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         routes: {
           AppRoutes.signupRoute: (context) => const SignupScreen(),
           AppRoutes.loginRoute: (context) => const LoginScreen(),
           AppRoutes.homeRoute: (context) => const HomeScreen(),
           AppRoutes.placesRoute: (context) => GovernoratesPlaces(),
         },
-        home: SignupScreen(),
+        home: const SignupScreen(),
       ),
     );
   }

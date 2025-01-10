@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
 import 'package:egypt_tourist_guide/views/widgets/place_card.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -21,9 +22,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       body: Column(
         children: [
           if (favoritePlaces.isEmpty)
-            const Center(
+            Center(
               heightFactor: 30,
-              child: Text('No favorite places yet!'),
+              child: Text('no_favorites'.tr()),
             )
           else
             Expanded(

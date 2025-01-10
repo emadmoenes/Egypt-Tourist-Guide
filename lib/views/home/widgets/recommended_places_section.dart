@@ -3,6 +3,7 @@ import 'package:egypt_tourist_guide/controllers/home_controller/home_states.dart
 import 'package:egypt_tourist_guide/views/home/widgets/recommended_places_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../widgets/error_widget.dart';
 
 class RecommendedPlacesSection extends StatelessWidget {
@@ -17,7 +18,9 @@ class RecommendedPlacesSection extends StatelessWidget {
           BlocBuilder<HomeCubit, HomeStates>(builder: (context, state) {
             if (state is HomeSuccessState) {
               if (state.data.isEmpty) {
-                return const Text("There's no data to show");
+                return Center(
+                  child: Text('no_data'.tr()),
+                );
               } else {
                 return Expanded(
                   child: RecommendedPlacesGrid(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -41,8 +42,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       await _profileController.updateUserData(_user);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Profile updated successfully!'),
+        SnackBar(
+          content: Text('profile_updated_successfully'.tr()),
           backgroundColor: Colors.green,
         ),
       );
@@ -52,8 +53,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please fix the errors in the form.'),
+        SnackBar(
+          content: Text('fix_form_errors'.tr()),
           backgroundColor: Colors.red,
         ),
       );
@@ -90,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Profile Details',
+                            'profile_details'.tr(),
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -131,89 +132,90 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               _buildEditableField(
-                                label: 'Full Name',
+                                label: 'full_name'.tr(),
                                 value: _user.fullName,
                                 onChanged: (value) => _user.fullName = value,
                                 isEditing: _isEditing,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Full name is required';
+                                    return 'validation_full_name'.tr();
                                   }
                                   return null;
                                 },
                               ),
                               const Divider(height: 20),
                               _buildEditableField(
-                                label: 'Email',
+                                label: 'email'.tr(),
                                 value: _user.email,
                                 onChanged: (value) => _user.email = value,
                                 isEditing: _isEditing,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Email is required';
+                                    return 'validation_email'.tr();
                                   }
                                   if (!value.contains('@') ||
                                       !value.contains('.')) {
-                                    return 'Enter a valid email address';
+                                    return 'validation_email_invalid'.tr();
                                   }
                                   return null;
                                 },
                               ),
                               const Divider(height: 20),
                               _buildEditableField(
-                                label: 'Password',
+                                label: 'password'.tr(),
                                 value: _user.password,
                                 onChanged: (value) => _user.password = value,
                                 isEditing: _isEditing,
                                 isPassword: true,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Password is required';
+                                    return 'validation_password_empty'.tr();
                                   }
                                   if (value.length < 8) {
-                                    return 'Password must be at least 8 characters';
+                                    return 'validation_password_length'.tr();
                                   }
                                   if (!value.contains(RegExp(r'[A-Z]'))) {
-                                    return 'Password must contain at least one uppercase letter';
+                                    return 'validation_password_uppercase'.tr();
                                   }
                                   if (!value.contains(RegExp(r'[a-z]'))) {
-                                    return 'Password must contain at least one lowercase letter';
+                                    return 'validation_password_lowercase'.tr();
                                   }
                                   if (!value.contains(RegExp(r'[0-9]'))) {
-                                    return 'Password must contain at least one digit';
+                                    return 'validation_password_digit'.tr();
                                   }
                                   if (!value.contains(
                                       RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                                    return 'Password must contain at least one special character';
+                                    return 'validation_password_special'.tr();
                                   }
                                   return null;
                                 },
                               ),
                               const Divider(height: 20),
                               _buildEditableField(
-                                label: 'Phone Number',
+                                label: 'phone_number'.tr(),
                                 value: _user.phoneNumber ?? '',
                                 onChanged: (value) => _user.phoneNumber = value,
                                 isEditing: _isEditing,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Phone number is required';
+                                    return 'validation_phone_number_empty'.tr();
                                   }
                                   if (value.length < 10) {
-                                    return 'Enter a valid phone number';
+                                    return 'validation_phone_number_invalid'
+                                        .tr();
                                   }
                                   return null;
                                 },
                               ),
                               const Divider(height: 20),
                               _buildEditableField(
-                                label: 'Address',
+                                label: 'address'.tr(),
                                 value: _user.address ?? '',
                                 onChanged: (value) => _user.address = value,
                                 isEditing: _isEditing,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Address is required';
+                                    return 'validation_address_empty'.tr();
                                   }
                                   return null;
                                 },

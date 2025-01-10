@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AppErrorWidget extends StatelessWidget {
   final String? errorMessage;
@@ -9,7 +10,7 @@ class AppErrorWidget extends StatelessWidget {
     return Center(
       child: FittedBox(
         child: Text(
-          "An error occurred. Please try again later.\n${errorMessage ?? "Unknown error"}",
+          'error_message'.tr(args: [errorMessage ?? 'unknown_error'.tr()]),
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.red, fontSize: 20),
         ),
