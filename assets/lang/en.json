@@ -35,6 +35,7 @@
   "places": "Governorates",
   "settings": "Settings",
   "recommended": "Recommended",
+  "suggested_places": "Suggested",
   "no_data": "There's no data to show",
   "error_message": "An error occurred. Please try again later.",
   "unknown_error": "Unknown error",

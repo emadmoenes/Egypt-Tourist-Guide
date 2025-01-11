@@ -1,8 +1,8 @@
+import 'package:egypt_tourist_guide/views/profile/widgets/editable_field.dart';
 import 'package:flutter/material.dart';
 import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
-
 import '../../core/app_routes.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -133,7 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildEditableField(
+                              EditableField(
                                 label: 'full_name'.tr(),
                                 value: _user.fullName,
                                 onChanged: (value) => _user.fullName = value,
@@ -146,7 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               ),
                               const Divider(height: 20),
-                              _buildEditableField(
+                              EditableField(
                                 label: 'email'.tr(),
                                 value: _user.email,
                                 onChanged: (value) => _user.email = value,
@@ -163,12 +163,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               ),
                               const Divider(height: 20),
-                              _buildEditableField(
+                              EditableField(
                                 label: 'password'.tr(),
                                 value: _user.password,
                                 onChanged: (value) => _user.password = value,
                                 isEditing: _isEditing,
                                 isPassword: true,
+                                isPasswordVisible: _isPasswordVisible,
+                                onTogglePasswordVisibility: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'validation_password_empty'.tr();
@@ -193,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               ),
                               const Divider(height: 20),
-                              _buildEditableField(
+                              EditableField(
                                 label: 'phone_number'.tr(),
                                 value: _user.phoneNumber ?? '',
                                 onChanged: (value) => _user.phoneNumber = value,
@@ -210,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               ),
                               const Divider(height: 20),
-                              _buildEditableField(
+                              EditableField(
                                 label: 'address'.tr(),
                                 value: _user.address ?? '',
                                 onChanged: (value) => _user.address = value,
@@ -240,78 +246,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Text('logout'.tr(),style: TextStyle(color: Colors.white,fontSize: 18),)
-                      )
+                        child: Text(
+                          'logout'.tr(),
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
           ),
-
         ],
       ),
-    );
-  }
-
-  Widget _buildEditableField({
-    required String label,
-    required String value,
-    required Function(String) onChanged,
-    required bool isEditing,
-    bool isPassword = false,
-    required String? Function(String?)? validator,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 8),
-        isEditing
-            ? TextFormField(
-                initialValue: value,
-                obscureText: isPassword && !_isPasswordVisible,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  suffixIcon: isPassword
-                      ? IconButton(
-                          icon: Icon(
-                            _isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.grey,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isPasswordVisible = !_isPasswordVisible;
-                            });
-                          },
-                        )
-                      : null,
-                ),
-                onChanged: onChanged,
-                validator: validator,
-              )
-            : Text(
-                isPassword ? '••••••••' : value,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black87,
-                ),
-              ),
-      ],
     );
   }
 }
