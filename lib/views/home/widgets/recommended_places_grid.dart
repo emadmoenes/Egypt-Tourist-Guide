@@ -14,7 +14,7 @@ class RecommendedPlacesGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.07),
+      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
       shrinkWrap: true,
 
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

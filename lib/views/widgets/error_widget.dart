@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../../../core/app_colors.dart';
 
 class AppErrorWidget extends StatelessWidget {
   final String? errorMessage;
@@ -12,7 +13,7 @@ class AppErrorWidget extends StatelessWidget {
         child: Text(
           'error_message'.tr(args: [errorMessage ?? 'unknown_error'.tr()]),
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.red, fontSize: 20),
+          style: TextStyle(color:AppColors.red, fontSize: 20),
         ),
       ),
     );

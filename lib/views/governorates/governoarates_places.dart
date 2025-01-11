@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:egypt_tourist_guide/views/governorates/widgets/places_grid_view.dart';
+// import 'package:egypt_tourist_guide/views/governorates/widgets/places_grid_view.dart';
+import 'package:egypt_tourist_guide/views/home/widgets/recommended_places_grid.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +32,7 @@ class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.governorate.name} ${AppStringEn.landmarks}'),
+        title: Text('${widget.governorate.name} '),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +82,7 @@ class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
                       widget.governorate.description,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white,
+                        color: AppColors.white,
                         overflow: TextOverflow.ellipsis,
                       ),
                       maxLines: 1,
@@ -93,7 +95,7 @@ class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
           HomeSectionTitle(text: "places".tr()),
           BlocBuilder<HomeCubit, HomeStates>(
             builder: (context, state) {
-              return GovernoratesPlacesGrid(
+              return RecommendedPlacesGrid(
                 recommendedPlaces: widget.places,
                 isWide: true,
               );

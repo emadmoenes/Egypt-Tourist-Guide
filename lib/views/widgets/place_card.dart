@@ -29,7 +29,7 @@ class PlaceCard extends StatelessWidget {
         height: isWide ? width * 0.81 * 0.75 : width * 0.42,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Color(0xffD0CBFF),
+            color: AppColors.containerColor,
             boxShadow: [
               BoxShadow(
                 color: AppColors.greyColor.withOpacity(0.2),
@@ -49,7 +49,7 @@ class PlaceCard extends StatelessWidget {
               padding: EdgeInsets.all(width * 0.02),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color.fromRGBO(160, 160, 160, 0.8),
+                color: AppColors.secGrey,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,17 +76,17 @@ class PlaceCard extends StatelessWidget {
                           },
                           child: CircleAvatar(
                     
-                              backgroundColor: Colors.white,
+                              backgroundColor: AppColors.white,
                               maxRadius: 10,
                               child: place.isFav
                                   ? Icon(
                                       Icons.favorite_rounded,
-                                      color: Color(0xffFF54A0),
+                                      color: AppColors.favoriteIconColor,
                                       size: 10,
                                     )
                                   : Icon(
                                       Icons.favorite_outline_rounded,
-                                      color: Colors.black,
+                                      color: AppColors.blackColor,
                                       size: 10,
                                     )),
                     
@@ -98,7 +98,7 @@ class PlaceCard extends StatelessWidget {
                     place.description,
                     style: TextStyle(
                         fontSize: textFactor * 11,
-                        color: Colors.white,
+                        color: AppColors.white,
                         overflow: TextOverflow.ellipsis),
                     maxLines: 1,
                   )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/app_colors.dart';
 
 class EditableField extends StatelessWidget {
   final String label;
@@ -32,7 +33,7 @@ class EditableField extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            color: AppColors.black87Color,
           ),
         ),
         const SizedBox(height: 8),
@@ -42,7 +43,7 @@ class EditableField extends StatelessWidget {
                 obscureText: isPassword && !isPasswordVisible,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: AppColors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -53,7 +54,7 @@ class EditableField extends StatelessWidget {
                             isPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.grey,
+                            color: AppColors.grey,
                           ),
                           onPressed: onTogglePasswordVisibility,
                         )
@@ -66,7 +67,7 @@ class EditableField extends StatelessWidget {
                 isPassword ? '••••••••' : value,
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.black87,
+                  color:AppColors.black87Color,
                 ),
               ),
       ],

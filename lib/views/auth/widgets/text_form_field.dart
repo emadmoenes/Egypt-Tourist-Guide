@@ -1,3 +1,4 @@
+import 'package:egypt_tourist_guide/core/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -27,11 +28,11 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: labelText.tr(),
-        labelStyle: TextStyle(color: Colors.grey),
+        labelStyle: TextStyle(color: AppColors.grey),
         hintText: hintText.tr(),
-        hintStyle: TextStyle(color: Colors.grey),
+        hintStyle: TextStyle(color: AppColors.grey),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.6),
+        fillColor: AppColors.white.withOpacity(0.6),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,

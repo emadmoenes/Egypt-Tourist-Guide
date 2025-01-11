@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/app_colors.dart';
+
 
 class AppBottomNavigationBar extends StatefulWidget {
   final Function settingState;
@@ -16,14 +18,14 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   Widget build(BuildContext context) {
     HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     return BottomNavigationBar(
-      backgroundColor: Colors.purple,
+      backgroundColor: AppColors.purple,
       onTap: (pageIndex) {
         setState(() {homeCubit.currentPageIndex = pageIndex;});
         widget.settingState();
         },
       currentIndex: homeCubit.currentPageIndex,
-      selectedItemColor: Colors.purple,
-      unselectedItemColor: Colors.grey,
+      selectedItemColor: AppColors.purple,
+      unselectedItemColor: AppColors.grey,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home_outlined),

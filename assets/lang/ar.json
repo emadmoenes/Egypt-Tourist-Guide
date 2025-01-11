@@ -32,7 +32,7 @@
   "settings_title": "الإعدادات",
   "home": "الرئيسية",
   "liked": "المفضلة",
-  "places": "الأماكن",
+  "places": "معالم المحافظة",
   "settings": "الإعدادات",
   "recommended": "مُوصى به",
   "suggested_places": "الاماكن المقترحة",
@@ -47,6 +47,5 @@
   "validation_address_empty": "العنوان مطلوب",
   "appTitle": "دليل السياحة في مصر",
   "governorates": "المحافظات",
-  "landmarks": "المعالم",
   "logout": "تسجيل خروج"
 }

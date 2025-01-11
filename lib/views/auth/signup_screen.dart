@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import '../../core/app_routes.dart';
+import '../../../core/app_colors.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -147,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                            color: AppColors.black87Color,
                           ),
                         ),
                         const SizedBox(height: 35),
@@ -218,8 +219,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ElevatedButton(
                           onPressed: _signUp,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(255, 4, 4, 4)
-                                .withOpacity(0.8),
+                            backgroundColor:  AppColors.blackColor.withOpacity(0.8),
                             padding: const EdgeInsets.symmetric(
                               horizontal: 50,
                               vertical: 15,

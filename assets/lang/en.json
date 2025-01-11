@@ -32,7 +32,7 @@
   "settings_title": "Settings",
   "home": "Home",
   "liked": "Favourites",
-  "places": "Governorates",
+  "places": "Governorates landmarks",
   "settings": "Settings",
   "recommended": "Recommended",
   "suggested_places": "Suggested",
@@ -47,6 +47,5 @@
   "validation_address_empty": "Address is required",
   "appTitle": "Egypt Tourist Guide",
   "governorates": "Governorates",
-  "landmarks": "Landmarks",
   "logout": "Log Out"
 }

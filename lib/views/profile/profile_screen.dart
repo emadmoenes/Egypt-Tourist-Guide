@@ -1,9 +1,11 @@
+import 'package:egypt_tourist_guide/core/app_colors.dart';
 import 'package:egypt_tourist_guide/views/profile/widgets/editable_field.dart';
 import 'package:flutter/material.dart';
 import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../core/app_routes.dart';
+import '../../../core/app_colors.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -46,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('profile_updated_successfully'.tr()),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.green,
         ),
       );
 
@@ -57,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('fix_form_errors'.tr()),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.red,
         ),
       );
     }
@@ -87,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: 10),
                       Divider(
                         thickness: 1,
-                        color: Color.fromARGB(255, 222, 148, 235),
+                        color:AppColors.lightPurple,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           IconButton(
                             icon: Icon(
                               _isEditing ? Icons.save : Icons.edit_note_rounded,
-                              color: Color.fromARGB(255, 222, 148, 235),
+                              color: AppColors.lightPurple,
                               size: 30,
                             ),
                             onPressed: () {
@@ -119,10 +121,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       Divider(
                         thickness: 1,
-                        color: const Color.fromARGB(255, 222, 148, 235),
+                        color: AppColors.lightPurple,
                       ),
                       Card(
-                        color: const Color.fromARGB(255, 226, 166, 241)
+                        color:AppColors.lightPurple2
                             .withOpacity(0.1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -239,7 +241,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               context, AppRoutes.loginRoute);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          backgroundColor:AppColors.red,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 50, vertical: 15),
                           shape: RoundedRectangleBorder(
@@ -248,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         child: Text(
                           'logout'.tr(),
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(color: AppColors.white, fontSize: 18),
                         ),
                       ),
                     ],

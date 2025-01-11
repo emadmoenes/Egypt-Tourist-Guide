@@ -4,6 +4,7 @@ import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../core/app_routes.dart';
+import '../../../core/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -80,7 +81,8 @@ class _LoginScreenState extends State<LoginScreen> {
             top: 40,
             right: 16,
             child: IconButton(
-              icon: const Icon(Icons.language, color: Colors.white, size: 30),
+              icon:
+                  const Icon(Icons.language, color: AppColors.white, size: 30),
               onPressed: () {
                 // Toggle between English and Arabic
                 final newLocale = context.locale.languageCode == 'en'
@@ -100,11 +102,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(16.0),
                     width: MediaQuery.of(context).size.width * 0.9,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.5),
+                      color: AppColors.white.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: AppColors.blackColor.withOpacity(0.2),
                           spreadRadius: 2,
                           blurRadius: 5,
                           offset: const Offset(0, 3),
@@ -120,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                            color: AppColors.black87Color,
                           ),
                         ),
                         const SizedBox(height: 25.0),
@@ -161,8 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ElevatedButton(
                           onPressed: _login,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(255, 4, 4, 4)
-                                .withOpacity(0.8),
+                            backgroundColor:
+                                AppColors.blackColor.withOpacity(0.8),
                             padding: const EdgeInsets.symmetric(
                               horizontal: 50,
                               vertical: 15,
@@ -175,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'login'.tr(),
                             style: const TextStyle(
                               fontSize: 18,
-                              color: Colors.white,
+                              color: AppColors.white,
                             ),
                           ),
                         ),
@@ -188,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             'signup_prompt'.tr(),
                             style: const TextStyle(
-                              color: Colors.black,
+                              color: AppColors.blackColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
