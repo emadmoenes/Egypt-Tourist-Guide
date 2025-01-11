@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+class CustomTextFormField extends StatelessWidget {
+  final TextEditingController controller;
+  final String labelText;
+  final String hintText;
+  final bool obscureText;
+  final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
+  final Widget? suffixIcon;
+
+  const CustomTextFormField({
+    super.key,
+    required this.controller,
+    required this.labelText,
+    required this.hintText,
+    this.obscureText = false,
+    this.keyboardType,
+    this.validator,
+    this.suffixIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText.tr(),
+        labelStyle: TextStyle(color: Colors.grey),
+        hintText: hintText.tr(),
+        hintStyle: TextStyle(color: Colors.grey),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.6),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        suffixIcon: suffixIcon,
+      ),
+      obscureText: obscureText,
+      validator: validator,
+      keyboardType: keyboardType,
+    );
+  }
+}

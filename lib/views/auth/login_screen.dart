@@ -1,5 +1,6 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
+import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../core/app_routes.dart';
@@ -123,48 +124,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 25.0),
-                        TextFormField(
-                          // Email field
+                        // Email field
+                        CustomTextFormField(
                           controller: emailController,
-                          decoration: InputDecoration(
-                            labelText: 'email'.tr(),
-                            labelStyle: const TextStyle(color: Colors.black),
-                            hintText: 'email_hint'.tr(),
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.6),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
+                          labelText: 'email',
+                          hintText: 'email_hint',
                           validator: _validateEmail,
                         ),
                         const SizedBox(height: 16.0),
-                        TextFormField(
-                          // Password field
+                        // Password field
+                        CustomTextFormField(
                           controller: passwordController,
+                          labelText: 'password',
+                          hintText: 'password_hint',
                           obscureText: hiddenPassword,
-                          decoration: InputDecoration(
-                            labelText: 'password'.tr(),
-                            labelStyle: const TextStyle(color: Colors.black),
-                            hintText: 'password_hint'.tr(),
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.6),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                            suffixIcon: IconButton(
-                              onPressed: togglePasswordVisibility,
-                              icon: Icon(
-                                hiddenPassword
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
-                            ),
-                          ),
                           validator: (value) {
                             if (value != null && value.isEmpty) {
                               return 'validation_password_empty'.tr();
@@ -174,10 +147,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                             return null;
                           },
+                          suffixIcon: IconButton(
+                            onPressed: togglePasswordVisibility,
+                            icon: Icon(
+                              hiddenPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                          ),
                         ),
                         const SizedBox(height: 16.0),
+                        // Login button
                         ElevatedButton(
-                          // Login button
                           onPressed: _login,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color.fromARGB(255, 4, 4, 4)
@@ -199,6 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 16.0),
+                        // Signup prompt
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, AppRoutes.signupRoute);

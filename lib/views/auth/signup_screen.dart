@@ -1,6 +1,7 @@
-import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
+import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import '../../core/app_routes.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -73,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return null;
   }
 
-  // signup function
+  // Signup function
   void _signUp() async {
     if (_formKey.currentState!.validate()) {
       final fullName = _fullNameController.text;
@@ -150,117 +151,67 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         const SizedBox(height: 35),
-                        TextFormField(
+                        CustomTextFormField(
                           controller: _fullNameController,
-                          decoration: InputDecoration(
-                            labelText: 'full_name'.tr(),
-                            labelStyle: TextStyle(color: Colors.grey),
-                            hintText: 'enter_full_name'.tr(),
-                            hintStyle: TextStyle(color: Colors.grey),
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.6),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
+                          labelText: 'full_name',
+                          hintText: 'enter_full_name',
                           validator: _validateFullName,
                         ),
                         const SizedBox(height: 16),
-                        TextFormField(
+                        CustomTextFormField(
                           controller: _emailController,
-                          decoration: InputDecoration(
-                            labelText: 'email'.tr(),
-                            labelStyle: TextStyle(color: Colors.grey),
-                            hintText: 'email_hint'.tr(),
-                            hintStyle: TextStyle(color: Colors.grey),
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.6),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
+                          labelText: 'email',
+                          hintText: 'email_hint',
                           validator: _validateEmail,
                         ),
                         const SizedBox(height: 16),
-                        TextFormField(
+                        CustomTextFormField(
                           controller: _passwordController,
-                          decoration: InputDecoration(
-                            labelText: 'password'.tr(),
-                            labelStyle: TextStyle(color: Colors.grey),
-                            hintText: 'password_hint'.tr(),
-                            hintStyle: TextStyle(color: Colors.grey),
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.6),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.black,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isPasswordVisible = !_isPasswordVisible;
-                                });
-                              },
-                            ),
-                          ),
+                          labelText: 'password',
+                          hintText: 'password_hint',
                           obscureText: !_isPasswordVisible,
                           validator: _validatePassword,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
                         const SizedBox(height: 16),
-                        TextFormField(
+                        CustomTextFormField(
                           controller: _confirmPasswordController,
-                          decoration: InputDecoration(
-                            labelText: 'confirm_password'.tr(),
-                            labelStyle: TextStyle(color: Colors.grey),
-                            hintText: 'confirm_password_hint'.tr(),
-                            hintStyle: TextStyle(color: Colors.grey),
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.6),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isConfirmPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.black,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isConfirmPasswordVisible =
-                                      !_isConfirmPasswordVisible;
-                                });
-                              },
-                            ),
-                          ),
+                          labelText: 'confirm_password',
+                          hintText: 'confirm_password_hint',
                           obscureText: !_isConfirmPasswordVisible,
                           validator: _validateConfirmPassword,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isConfirmPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isConfirmPasswordVisible =
+                                    !_isConfirmPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
                         const SizedBox(height: 16),
-                        TextFormField(
+                        CustomTextFormField(
                           controller: _phoneController,
-                          decoration: InputDecoration(
-                            labelText: 'phone_number'.tr(),
-                            labelStyle: TextStyle(color: Colors.grey),
-                            hintText: 'phone_number_hint'.tr(),
-                            hintStyle: TextStyle(color: Colors.grey),
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.6),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
+                          labelText: 'phone_number',
+                          hintText: 'phone_number_hint',
                           keyboardType: TextInputType.phone,
                         ),
                         const SizedBox(height: 35),
@@ -278,7 +229,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
                           child: Text(
-                            'signup'.tr(), // Translated button text
+                            'signup'.tr(),
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,
