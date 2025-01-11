@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import 'core/custom_page_routes.dart'; // Ensure this import is correct
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -39,11 +41,31 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        routes: {
-          AppRoutes.signupRoute: (context) => const SignupScreen(),
-          AppRoutes.loginRoute: (context) => const LoginScreen(),
-          AppRoutes.homeRoute: (context) => const HomeScreen(),
-          AppRoutes.placesRoute: (context) => GovernoratesPlaces(),
+        onGenerateRoute: (settings) {
+          print('Navigating to: ${settings.name}'); // Debugging
+          switch (settings.name) {
+            case AppRoutes.signupRoute:
+              return SlideRightRoute(child: const SignupScreen());
+            case AppRoutes.loginRoute:
+              return SlideRightRoute(child: const LoginScreen());
+            case AppRoutes.homeRoute:
+              return FadeTransitionRoute(child: const HomeScreen());
+            case AppRoutes.placesRoute:
+            // Extract arguments and pass them to GovernoratesPlaces
+              final args = settings.arguments as Map<String, dynamic>;
+              return SlideRightRoute(
+                child: GovernoratesPlaces(
+                  governorate: args['governorate'],
+                  places: args['places'],
+                ),
+              );
+            default:
+              return MaterialPageRoute(
+                builder: (_) => Scaffold(
+                  body: Center(child: Text('Route not found')),
+                ),
+              );
+          }
         },
         home: const SignupScreen(),
       ),

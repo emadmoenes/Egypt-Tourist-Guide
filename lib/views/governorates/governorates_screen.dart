@@ -9,24 +9,20 @@ import '../../data.dart';
 class GovernoratesScreen extends StatelessWidget {
   const GovernoratesScreen({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
-    final List<GovernorateModel> governorateList = context.locale.toString() == 'ar' ? ARABICGOVERNORATES:GOVERNERATES;
-    //HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
+    // Determine the list of governorates based on the current locale
+    final List<GovernorateModel> governorateList =
+    context.locale.toString() == 'ar' ? ARABICGOVERNORATES : GOVERNERATES;
 
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
 
     //--- Get governorate data ---//
     List<PlacesModel> getGovernorateData(String governorateId) {
-      return context.locale.toString() == 'ar' ?
-      ARABICPLACES.where((place) => place.governorateId == governorateId).toList():
-      PLACES.where((place) => place.governorateId == governorateId).toList();
-      ;
-
-
+      return context.locale.toString() == 'ar'
+          ? ARABICPLACES.where((place) => place.governorateId == governorateId).toList()
+          : PLACES.where((place) => place.governorateId == governorateId).toList();
     }
 
     return Padding(
@@ -41,19 +37,22 @@ class GovernoratesScreen extends StatelessWidget {
             height: height,
             onTap: () {
               // Go to governorate places
-              List<PlacesModel> listOfPlaces =
-                  getGovernorateData(governorate.id);
-              // homeCubit.getGovernorateData(governorate.name);
+              List<PlacesModel> listOfPlaces = getGovernorateData(governorate.id);
+
+              // Navigate to GovernoratesPlaces with arguments
               Navigator.pushNamed(
                 context,
                 AppRoutes.placesRoute,
-                arguments: {'1': listOfPlaces, '2': governorate},
+                arguments: {
+                  'governorate': governorate, // Pass the governorate object
+                  'places': listOfPlaces, // Pass the list of places
+                },
               );
             },
           );
         },
         separatorBuilder: (context, counter) {
-          return SizedBox(
+          return const SizedBox(
             height: 20,
           );
         },
