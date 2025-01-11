@@ -95,108 +95,125 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: Form(
                   key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        'login'.tr(),
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
+                  child: Container(
+                    padding: const EdgeInsets.all(16.0),
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
                         ),
-                      ),
-                      const SizedBox(height: 25.0),
-                      TextFormField(
-                        // Email field
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          labelText: 'email'.tr(),
-                          labelStyle: const TextStyle(color: Colors.black),
-                          hintText: 'email_hint'.tr(),
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.6),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(height: 20),
+                        Text(
+                          'login'.tr(),
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
                           ),
                         ),
-                        validator: _validateEmail,
-                      ),
-                      const SizedBox(height: 16.0),
-                      TextFormField(
-                        // Password field
-                        controller: passwordController,
-                        obscureText: hiddenPassword,
-                        decoration: InputDecoration(
-                          labelText: 'password'.tr(),
-                          labelStyle: const TextStyle(color: Colors.black),
-                          hintText: 'password_hint'.tr(),
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.6),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
+                        const SizedBox(height: 25.0),
+                        TextFormField(
+                          // Email field
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            labelText: 'email'.tr(),
+                            labelStyle: const TextStyle(color: Colors.black),
+                            hintText: 'email_hint'.tr(),
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.6),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none,
+                            ),
                           ),
-                          suffixIcon: IconButton(
-                            onPressed: togglePasswordVisibility,
-                            icon: Icon(
-                              hiddenPassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
+                          validator: _validateEmail,
+                        ),
+                        const SizedBox(height: 16.0),
+                        TextFormField(
+                          // Password field
+                          controller: passwordController,
+                          obscureText: hiddenPassword,
+                          decoration: InputDecoration(
+                            labelText: 'password'.tr(),
+                            labelStyle: const TextStyle(color: Colors.black),
+                            hintText: 'password_hint'.tr(),
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.6),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none,
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: togglePasswordVisibility,
+                              icon: Icon(
+                                hiddenPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value != null && value.isEmpty) {
+                              return 'validation_password_empty'.tr();
+                            }
+                            if (value!.length < 6) {
+                              return 'validation_password_length'.tr();
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 16.0),
+                        ElevatedButton(
+                          // Login button
+                          onPressed: _login,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(255, 4, 4, 4)
+                                .withOpacity(0.8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 50,
+                              vertical: 15,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Text(
+                            'login'.tr(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
                             ),
                           ),
                         ),
-                        validator: (value) {
-                          if (value != null && value.isEmpty) {
-                            return 'validation_password_empty'.tr();
-                          }
-                          if (value!.length < 6) {
-                            return 'validation_password_length'.tr();
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      ElevatedButton(
-                        // Login button
-                        onPressed: _login,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 4, 4, 4)
-                              .withOpacity(0.8),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 50,
-                            vertical: 15,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                        const SizedBox(height: 16.0),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.signupRoute);
+                          },
+                          child: Text(
+                            'signup_prompt'.tr(),
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        child: Text(
-                          'login'.tr(),
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.signupRoute);
-                        },
-                        child: Text(
-                          'signup_prompt'.tr(),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
