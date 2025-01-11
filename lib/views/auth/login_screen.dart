@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import '../../core/app_routes.dart';
 import '../../../core/app_colors.dart';
 
+// this is the login screen widget
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -15,7 +16,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool hiddenPassword = true;
-
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -43,19 +43,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() async {
     if (_formKey.currentState!.validate()) {
-      // Get input values
       final email = emailController.text;
       final password = passwordController.text;
-
-      // Retrieve user data from SharedPreferences
       final userData = await SharedPrefsService.getUserData();
 
-      // Validate credentials
       if (userData['email'] == email && userData['password'] == password) {
-        // Navigate to the Home Screen
         Navigator.pushReplacementNamed(context, AppRoutes.homeRoute);
       } else {
-        // Show error message
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('invalid_credentials'.tr())),
         );
@@ -71,7 +65,6 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-            // image stretches to fill entire space of stack.
             child: Image.asset(
               'assets/images/pyramids.png',
               fit: BoxFit.cover,
@@ -126,7 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 25.0),
-                        // Email field
                         CustomTextFormField(
                           controller: emailController,
                           labelText: 'email',
@@ -134,7 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           validator: _validateEmail,
                         ),
                         const SizedBox(height: 16.0),
-                        // Password field
                         CustomTextFormField(
                           controller: passwordController,
                           labelText: 'password',
@@ -182,7 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 16.0),
-                        // Signup prompt
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, AppRoutes.signupRoute);

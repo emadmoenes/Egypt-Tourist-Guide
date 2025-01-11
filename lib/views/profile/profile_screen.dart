@@ -5,7 +5,6 @@ import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../core/app_routes.dart';
-import '../../../core/app_colors.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -89,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: 10),
                       Divider(
                         thickness: 1,
-                        color:AppColors.lightPurple,
+                        color: AppColors.lightPurple,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,8 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: AppColors.lightPurple,
                       ),
                       Card(
-                        color:AppColors.lightPurple2
-                            .withOpacity(0.1),
+                        color: AppColors.lightPurple2.withOpacity(0.1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -241,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               context, AppRoutes.loginRoute);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:AppColors.red,
+                          backgroundColor: AppColors.red,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 50, vertical: 15),
                           shape: RoundedRectangleBorder(
@@ -250,7 +248,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         child: Text(
                           'logout'.tr(),
-                          style: TextStyle(color: AppColors.white, fontSize: 18),
+                          style:
+                              TextStyle(color: AppColors.white, fontSize: 18),
                         ),
                       ),
                     ],

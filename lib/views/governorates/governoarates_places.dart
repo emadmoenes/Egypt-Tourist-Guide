@@ -1,14 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-// import 'package:egypt_tourist_guide/views/governorates/widgets/places_grid_view.dart';
 import 'package:egypt_tourist_guide/views/home/widgets/recommended_places_grid.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../controllers/home_controller/home_cubit.dart';
 import '../../controllers/home_controller/home_states.dart';
 import '../../core/app_colors.dart';
-import '../../core/app_strings_en.dart';
 import '../../models/governorate_model.dart';
 import '../../models/place_model.dart';
 import '../home/widgets/home_section_title.dart';
