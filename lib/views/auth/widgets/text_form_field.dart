@@ -33,7 +33,7 @@ class CustomTextFormField extends StatelessWidget {
         hintText: hintText.tr(),
         hintStyle: TextStyle(color: AppColors.grey),
         filled: true,
-        fillColor: AppColors.white.withOpacity(0.6),
+        fillColor: AppColors.white.withValues(alpha: 0.6),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,

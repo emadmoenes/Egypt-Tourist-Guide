@@ -1,8 +1,10 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
+import 'package:egypt_tourist_guide/views/auth/widgets/auth_button.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../../core/app_images.dart';
 import '../../core/app_routes.dart';
 import '../../../core/app_colors.dart';
 
@@ -21,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   AuthController authController = AuthController();
 
-  /*--------------- Methods -----------------*/
+  /*-------------- Methods ----------------*/
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'validation_email'.tr();
@@ -57,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  /*-------------- End of Methods ----------------*/
+  /*------------ End of Methods --------------*/
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/pyramids.png',
+              AppImages.pyramids,
               fit: BoxFit.cover,
             ),
           ),
@@ -95,11 +97,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(16.0),
                     width: MediaQuery.of(context).size.width * 0.9,
                     decoration: BoxDecoration(
-                      color: AppColors.white.withOpacity(0.5),
+                      color: AppColors.white.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.blackColor.withOpacity(0.2),
+                          color: AppColors.blackColor.withValues(alpha: 0.2),
                           spreadRadius: 2,
                           blurRadius: 5,
                           offset: const Offset(0, 3),
@@ -119,6 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 25.0),
+                        //---- Email Form Field ----//
                         CustomTextFormField(
                           controller: emailController,
                           labelText: 'email',
@@ -126,6 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           validator: _validateEmail,
                         ),
                         const SizedBox(height: 16.0),
+                        //---- Password Form Field ----//
                         CustomTextFormField(
                           controller: passwordController,
                           labelText: 'password',
@@ -150,29 +154,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 16.0),
-                        // Login button
-                        ElevatedButton(
+                        //---- Login button ----//
+                        AuthButton(
                           onPressed: _login,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                AppColors.blackColor.withOpacity(0.8),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 50,
-                              vertical: 15,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Text(
-                            'login'.tr(),
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: AppColors.white,
-                            ),
-                          ),
+                          buttonText: 'login'.tr(),
                         ),
                         const SizedBox(height: 16.0),
+                        // Sign up prompt
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, AppRoutes.signupRoute);

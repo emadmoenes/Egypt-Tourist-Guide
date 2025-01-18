@@ -1,3 +1,5 @@
+import 'package:egypt_tourist_guide/core/app_images.dart';
+import 'package:egypt_tourist_guide/views/auth/widgets/auth_button.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,60 +24,8 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
 
-  /*----------- Methods -----------*/
-  String? _validateFullName(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'validation_full_name'.tr();
-    }
-    return null;
-  }
 
-  String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'validation_email'.tr();
-    }
-    if (!value.contains('@')) {
-      return 'validation_email_at'.tr();
-    }
-    if (!value.contains('.')) {
-      return 'validation_email_dot'.tr();
-    }
-    return null;
-  }
-
-  String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'validation_password_empty'.tr();
-    }
-    if (value.length < 8) {
-      return 'validation_password_length'.tr();
-    }
-    if (!value.contains(RegExp(r'[A-Z]'))) {
-      return 'validation_password_uppercase'.tr();
-    }
-    if (!value.contains(RegExp(r'[a-z]'))) {
-      return 'validation_password_lowercase'.tr();
-    }
-    if (!value.contains(RegExp(r'[0-9]'))) {
-      return 'validation_password_digit'.tr();
-    }
-    if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return 'validation_password_special'.tr();
-    }
-    return null;
-  }
-
-  String? _validateConfirmPassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'validation_confirm_password'.tr();
-    }
-    if (value != _passwordController.text) {
-      return 'validation_confirm_password_match'.tr();
-    }
-    return null;
-  }
-
-  // Signup function
+  //-- Signup function --//
   void _signUp() async {
     if (_formKey.currentState!.validate()) {
       final fullName = _fullNameController.text;
@@ -93,10 +43,63 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  /*----------- End of Methods -----------*/
 
   @override
   Widget build(BuildContext context) {
+    /*----------- Methods -----------*/
+    String? validateFullName(String? value) {
+      if (value == null || value.isEmpty) {
+        return 'validation_full_name'.tr();
+      }
+      return null;
+    }
+
+    String? validateEmail(String? value) {
+      if (value == null || value.isEmpty) {
+        return 'validation_email'.tr();
+      }
+      if (!value.contains('@')) {
+        return 'validation_email_at'.tr();
+      }
+      if (!value.contains('.')) {
+        return 'validation_email_dot'.tr();
+      }
+      return null;
+    }
+
+    String? validatePassword(String? value) {
+      if (value == null || value.isEmpty) {
+        return 'validation_password_empty'.tr();
+      }
+      if (value.length < 8) {
+        return 'validation_password_length'.tr();
+      }
+      if (!value.contains(RegExp(r'[A-Z]'))) {
+        return 'validation_password_uppercase'.tr();
+      }
+      if (!value.contains(RegExp(r'[a-z]'))) {
+        return 'validation_password_lowercase'.tr();
+      }
+      if (!value.contains(RegExp(r'[0-9]'))) {
+        return 'validation_password_digit'.tr();
+      }
+      if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+        return 'validation_password_special'.tr();
+      }
+      return null;
+    }
+
+    String? validateConfirmPassword(String? value) {
+      if (value == null || value.isEmpty) {
+        return 'validation_confirm_password'.tr();
+      }
+      if (value != _passwordController.text) {
+        return 'validation_confirm_password_match'.tr();
+      }
+      return null;
+    }
+    /*----------- End of Methods -----------*/
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
@@ -104,11 +107,12 @@ class _SignupScreenState extends State<SignupScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/signup_bg.jpg'),
+                image: AssetImage(AppImages.signupBackground),
                 fit: BoxFit.cover,
               ),
             ),
           ),
+          //-- Change language icon --//
           Positioned(
             top: 40,
             right: 16,
@@ -129,7 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
               height: MediaQuery.of(context).size.height * 0.8,
               width: MediaQuery.of(context).size.width * 1,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
@@ -143,6 +147,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: Column(
                       children: [
                         const SizedBox(height: 20),
+                        // Sign up text
                         Text(
                           'signup'.tr(),
                           style: TextStyle(
@@ -152,26 +157,29 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         const SizedBox(height: 35),
+                        //---- Full Name Form Field ----//
                         CustomTextFormField(
                           controller: _fullNameController,
                           labelText: 'full_name',
                           hintText: 'enter_full_name',
-                          validator: _validateFullName,
+                          validator: validateFullName,
                         ),
                         const SizedBox(height: 16),
+                        //---- Email Form Field ----//
                         CustomTextFormField(
                           controller: _emailController,
                           labelText: 'email',
                           hintText: 'email_hint',
-                          validator: _validateEmail,
+                          validator: validateEmail,
                         ),
                         const SizedBox(height: 16),
+                        //---- Password Form Field ----//
                         CustomTextFormField(
                           controller: _passwordController,
                           labelText: 'password',
                           hintText: 'password_hint',
                           obscureText: !_isPasswordVisible,
-                          validator: _validatePassword,
+                          validator: validatePassword,
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isPasswordVisible
@@ -187,12 +195,13 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         const SizedBox(height: 16),
+                        //---- Confirm password Form Field ----//
                         CustomTextFormField(
                           controller: _confirmPasswordController,
                           labelText: 'confirm_password',
                           hintText: 'confirm_password_hint',
                           obscureText: !_isConfirmPasswordVisible,
-                          validator: _validateConfirmPassword,
+                          validator: validateConfirmPassword,
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isConfirmPasswordVisible
@@ -209,6 +218,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         const SizedBox(height: 16),
+                        //---- Phone Form Field ----//
                         CustomTextFormField(
                           controller: _phoneController,
                           labelText: 'phone_number',
@@ -216,25 +226,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           keyboardType: TextInputType.phone,
                         ),
                         const SizedBox(height: 35),
-                        ElevatedButton(
+                        //---- Sign Up Button ----//
+                        AuthButton(
+                          buttonText: 'signup'.tr(),
                           onPressed: _signUp,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:  AppColors.blackColor.withOpacity(0.8),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 50,
-                              vertical: 15,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Text(
-                            'signup'.tr(),
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
-                          ),
                         ),
                       ],
                     ),

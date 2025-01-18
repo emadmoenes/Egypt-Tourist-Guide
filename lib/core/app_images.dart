@@ -4,4 +4,6 @@ class AppImages {
   static const String luxor = 'assets/cities/luxor/luxor.jpg';
   static const String cairo = 'assets/cities/cairo/cairo.jpg';
   static const String giza = 'assets/cities/giza/giza.jpg';
+  static const String pyramids = 'assets/images/pyramids.png';
+  static const String signupBackground = 'assets/images/signup_bg.jpg';
 }

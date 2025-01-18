@@ -1,5 +1,6 @@
 import 'package:egypt_tourist_guide/core/app_colors.dart';
 import 'package:egypt_tourist_guide/views/profile/widgets/editable_field.dart';
+import 'package:egypt_tourist_guide/views/profile/widgets/log_out_button.dart';
 import 'package:flutter/material.dart';
 import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/controllers/profile_controller.dart';
@@ -33,6 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _loadUserData();
   }
 
+  //-- Load user data method --//
   Future<void> _loadUserData() async {
     final user = await _profileController.loadUserData();
     setState(() {
@@ -40,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
+  //-- Update user data method --//
   Future<void> _updateProfile() async {
     if (_formKey.currentState!.validate()) {
       await _profileController.updateUserData(_user);
@@ -100,6 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          // Save Button
                           IconButton(
                             icon: Icon(
                               _isEditing ? Icons.save : Icons.edit_note_rounded,
@@ -123,7 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: AppColors.lightPurple,
                       ),
                       Card(
-                        color: AppColors.lightPurple2.withOpacity(0.1),
+                        color: AppColors.lightPurple2.withValues(alpha: 0.1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -233,24 +237,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
+                      //---- Logout Button ------//
+                      LogOutButton(
+                        logOutFunction: () {
                           Navigator.pushReplacementNamed(
                               context, AppRoutes.loginRoute);
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.red,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: Text(
-                          'logout'.tr(),
-                          style:
-                              TextStyle(color: AppColors.white, fontSize: 18),
-                        ),
                       ),
                     ],
                   ),
@@ -263,3 +255,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+////////////////////////////////////////////
