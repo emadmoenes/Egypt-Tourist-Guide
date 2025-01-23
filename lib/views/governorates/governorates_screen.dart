@@ -13,7 +13,7 @@ class GovernoratesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Determine the list of governorates based on the current locale
     final List<GovernorateModel> governorateList =
-    context.locale.toString() == 'ar' ? ARABICGOVERNORATES : GOVERNERATES;
+        context.locale.toString() == 'ar' ? ARABICGOVERNORATES : GOVERNERATES;
 
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
@@ -21,8 +21,12 @@ class GovernoratesScreen extends StatelessWidget {
     //--- Get governorate data ---//
     List<PlacesModel> getGovernorateData(String governorateId) {
       return context.locale.toString() == 'ar'
-          ? ARABICPLACES.where((place) => place.governorateId == governorateId).toList()
-          : PLACES.where((place) => place.governorateId == governorateId).toList();
+          ? ARABICPLACES
+              .where((place) => place.governorateId == governorateId)
+              .toList()
+          : PLACES
+              .where((place) => place.governorateId == governorateId)
+              .toList();
     }
 
     return Padding(
@@ -37,15 +41,18 @@ class GovernoratesScreen extends StatelessWidget {
             height: height,
             onTap: () {
               // Go to governorate places
-              List<PlacesModel> listOfPlaces = getGovernorateData(governorate.id);
+              List<PlacesModel> listOfPlaces =
+                  getGovernorateData(governorate.id);
 
               // Navigate to GovernoratesPlaces with arguments
               Navigator.pushNamed(
                 context,
                 AppRoutes.placesRoute,
                 arguments: {
-                  'governorate': governorate, // Pass the governorate object
-                  'places': listOfPlaces, // Pass the list of places
+                  // Pass the governorate object
+                  'governorate': governorate,
+                  // Pass the list of places
+                  'places': listOfPlaces,
                 },
               );
             },

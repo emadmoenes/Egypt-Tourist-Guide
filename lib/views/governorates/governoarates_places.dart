@@ -9,7 +9,7 @@ import '../../models/governorate_model.dart';
 import '../../models/place_model.dart';
 import '../home/widgets/home_section_title.dart';
 
-class GovernoratesPlaces extends StatefulWidget {
+class GovernoratesPlaces extends StatelessWidget {
   final GovernorateModel governorate;
   final List<PlacesModel> places;
 
@@ -20,21 +20,16 @@ class GovernoratesPlaces extends StatefulWidget {
   });
 
   @override
-  State<GovernoratesPlaces> createState() => _GovernoratesPlacesState();
-}
-
-class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.governorate.name} '),
+        title: Text('${governorate.name} '),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Hero(
-            tag: "hero-${widget.governorate.id}",
+            tag: "hero-${governorate.id}",
             child: Container(
               width: double.infinity,
               height: 200,
@@ -42,7 +37,7 @@ class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
-                  image: AssetImage(widget.governorate.image),
+                  image: AssetImage(governorate.image),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -63,7 +58,7 @@ class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
                       children: [
                         Expanded(
                           child: Text(
-                            widget.governorate.name,
+                            governorate.name,
                             style: TextStyle(
                               fontSize: 16,
                               color: AppColors.white,
@@ -75,7 +70,7 @@ class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
                       ],
                     ),
                     Text(
-                      widget.governorate.description,
+                      governorate.description,
                       style: TextStyle(
                         fontSize: 14,
                         color: AppColors.white,
@@ -92,7 +87,7 @@ class _GovernoratesPlacesState extends State<GovernoratesPlaces> {
           BlocBuilder<HomeCubit, HomeStates>(
             builder: (context, state) {
               return RecommendedPlacesGrid(
-                recommendedPlaces: widget.places,
+                recommendedPlaces: places,
                 isWide: true,
               );
             },
