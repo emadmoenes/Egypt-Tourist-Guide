@@ -64,3 +64,10 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 2. **Home Page** → **Governorates Page** → **Landmarks Page**
 3. **Home Page** → **Favorites Page**
 4. **Home Page** → **Profile Page**
+   
+-------
+
+## **Backges Used**
+- **SharedPreferences**: For local data storage and offline support ==> https://pub.dev/packages/shared_preferences.
+- **easy_localization**: For localization feature ==> https://pub.dev/packages/easy_localization.
+- **MVC Architecture**: For clean and maintainable code structure.
