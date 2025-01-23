@@ -1,9 +1,9 @@
 import 'package:egypt_tourist_guide/core/app_images.dart';
+import 'package:egypt_tourist_guide/core/services/shared_prefs_service.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/auth_button.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
 import '../../core/app_routes.dart';
 import '../../../core/app_colors.dart';
 

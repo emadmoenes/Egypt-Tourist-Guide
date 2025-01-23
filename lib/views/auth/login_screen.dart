@@ -1,5 +1,5 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
-import 'package:egypt_tourist_guide/services/shared_prefs_service.dart';
+import 'package:egypt_tourist_guide/core/services/shared_prefs_service.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/auth_button.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
