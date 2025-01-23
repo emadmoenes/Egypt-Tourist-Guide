@@ -6,7 +6,7 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 
 ---
 
-## Features
+## Features 
 
 ### 1. Signup Page
 - **Input Fields**: Full Name, Email, Password, confirm password, Phone Number (optional).
