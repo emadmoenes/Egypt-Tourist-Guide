@@ -67,7 +67,7 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
    
 -------
 
-## **Backges Used**
+## **Packages Used**
 - **SharedPreferences**: For local data storage and offline support ==> https://pub.dev/packages/shared_preferences.
 - **easy_localization**: For localization feature ==> https://pub.dev/packages/easy_localization.
 - **MVC Architecture**: For clean and maintainable code structure.
