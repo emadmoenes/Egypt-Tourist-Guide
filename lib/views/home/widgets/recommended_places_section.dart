@@ -12,33 +12,24 @@ class RecommendedPlacesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BlocBuilder<HomeCubit, HomeStates>(builder: (context, state) {
-            if (state is HomeSuccessState) {
-              if (state.data.isEmpty) {
-                return Center(
-                  child: Text('no_data'.tr()),
-                );
-              } else {
-                return Expanded(
-                  child: RecommendedPlacesGrid(
-                    recommendedPlaces:  context.locale.toString() == 'ar' ? ARABICPLACES:PLACES,
-                  ),
-                );
-              }
-            } else if (state is HomeErrorState) {
-              return AppErrorWidget();
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
-        ],
-      ),
-    );
+    return BlocBuilder<HomeCubit, HomeStates>(builder: (context, state) {
+      if (state is HomeSuccessState) {
+        if (state.data.isEmpty) {
+          return Center(
+            child: Text('no_data'.tr()),
+          );
+        }
+      } else if (state is HomeErrorState) {
+        return AppErrorWidget();
+      } else if (state is HomeLoadingState) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+      return RecommendedPlacesGrid(
+        recommendedPlaces:
+            context.locale.toString() == 'ar' ? ARABICPLACES : PLACES,
+      );
+    });
   }
 }

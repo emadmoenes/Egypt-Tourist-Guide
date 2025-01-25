@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 class RecommendedPlacesGrid extends StatelessWidget {
   final List<PlacesModel> recommendedPlaces;
 
-  const RecommendedPlacesGrid(
-      {super.key, required this.recommendedPlaces, this.isWide = false});
+  const RecommendedPlacesGrid({
+    super.key,
+    required this.recommendedPlaces,
+    this.isWide = false,
+  });
 
   final bool isWide;
 
@@ -14,13 +17,13 @@ class RecommendedPlacesGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
       shrinkWrap: true,
-
+      physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: width * 0.03, //0.04
-          mainAxisSpacing: width * 0.04,
+        crossAxisCount: 2,
+        crossAxisSpacing: width * 0.03,
+        mainAxisSpacing: width * 0.03,
       ),
       itemBuilder: (context, counter) => PlaceCard(
         place: recommendedPlaces[counter],

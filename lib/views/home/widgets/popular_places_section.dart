@@ -21,16 +21,18 @@ class PopularPlacesSection extends StatelessWidget {
             return Center(
               child: Text('no_data'.tr()),
             );
-          } else {
-            return PopularPlacesListView(popularPlacesList: context.locale.toString() == 'ar' ? ARABICPLACES:PLACES);
           }
         } else if (state is HomeErrorState) {
           return AppErrorWidget();
-        } else {
+        } else if (state is HomeLoadingState) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
+        return PopularPlacesListView(
+          popularPlacesList:
+              context.locale.toString() == 'ar' ? ARABICPLACES : PLACES,
+        );
       }),
     );
   }

@@ -8,7 +8,10 @@ class HomeLoadingState extends HomeStates {}
 
 class HomeSuccessState extends HomeStates {
   final List<PlacesModel> data;
+
   HomeSuccessState({required this.data});
 }
 
 class HomeErrorState extends HomeStates {}
+
+class BottomNavigationChangedState extends HomeStates {}

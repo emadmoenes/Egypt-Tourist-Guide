@@ -12,7 +12,7 @@ class PopularPlacesListView extends StatelessWidget {
     double width = MediaQuery.sizeOf(context).width;
     return ListView.separated(
       padding: EdgeInsets.symmetric(
-        horizontal: width * 0.07,
+        horizontal: width * 0.05,
       ),
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, counter) => PlaceCard(

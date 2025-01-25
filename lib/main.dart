@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         onGenerateRoute: onGenerateRoute,
-        home: const SignupScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
