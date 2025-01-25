@@ -19,8 +19,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool hiddenPassword = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   AuthController authController = AuthController();
 
   /*-------------- Methods ----------------*/
@@ -45,8 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() async {
     if (_formKey.currentState!.validate()) {
-      final email = emailController.text;
-      final password = passwordController.text;
+      final email = _emailController.text;
+      final password = _passwordController.text;
       final userData = await SharedPrefsService.getUserData();
 
       if (userData['email'] == email && userData['password'] == password) {
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 25.0),
                         //---- Email Form Field ----//
                         CustomTextFormField(
-                          controller: emailController,
+                          controller: _emailController,
                           labelText: 'email',
                           hintText: 'email_hint',
                           validator: _validateEmail,
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 16.0),
                         //---- Password Form Field ----//
                         CustomTextFormField(
-                          controller: passwordController,
+                          controller: _passwordController,
                           labelText: 'password',
                           hintText: 'password_hint',
                           obscureText: hiddenPassword,
@@ -184,5 +184,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }
