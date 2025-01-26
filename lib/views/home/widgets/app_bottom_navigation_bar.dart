@@ -36,7 +36,7 @@ class AppBottomNavigationBar extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
-              label: 'settings_title'.tr(),
+              label: 'profile_title'.tr(),
             ),
           ],
         );

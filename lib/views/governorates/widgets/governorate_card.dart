@@ -36,7 +36,7 @@ class GovernorateCard extends StatelessWidget {
               color: AppColors.containerColor,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.greyColor.withOpacity(0.2),
+                  color: AppColors.greyColor.withValues(alpha: 0.2),
                   spreadRadius: 1,
                   blurRadius: 2,
                   offset: Offset(2, 6),
@@ -80,8 +80,8 @@ class GreyContainer extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomRight: Radius.circular(10),
-          bottomLeft: Radius.circular(10)
+          bottomRight: Radius.circular(10.0),
+          bottomLeft: Radius.circular(10.0)
         ),
         color: AppColors.greyColor,
       ),

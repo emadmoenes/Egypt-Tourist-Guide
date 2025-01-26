@@ -2,12 +2,12 @@ import 'package:egypt_tourist_guide/models/place_model.dart';
 import 'package:egypt_tourist_guide/views/widgets/place_card.dart';
 import 'package:flutter/material.dart';
 
-class RecommendedPlacesGrid extends StatelessWidget {
-  final List<PlacesModel> recommendedPlaces;
+class SuggestedPlacesGrid extends StatelessWidget {
+  final List<PlacesModel> suggestedPlaces;
 
-  const RecommendedPlacesGrid({
+  const SuggestedPlacesGrid({
     super.key,
-    required this.recommendedPlaces,
+    required this.suggestedPlaces,
     this.isWide = false,
   });
 
@@ -26,10 +26,10 @@ class RecommendedPlacesGrid extends StatelessWidget {
         mainAxisSpacing: width * 0.03,
       ),
       itemBuilder: (context, counter) => PlaceCard(
-        place: recommendedPlaces[counter],
+        place: suggestedPlaces[counter],
         isWide: isWide,
       ),
-      itemCount: recommendedPlaces.length,
+      itemCount: suggestedPlaces.length,
     );
   }
 }

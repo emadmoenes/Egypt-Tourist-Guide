@@ -18,7 +18,7 @@ class HomeScreen extends StatefulWidget {
         ScreenModel(title: 'app_title'.tr(), body: HomeScreenBody()),
         ScreenModel(title: 'governorates'.tr(), body: GovernoratesScreen()),
         ScreenModel(title: 'favorites_title'.tr(), body: FavoritesScreen()),
-        ScreenModel(title: 'settings_title'.tr(), body: ProfileScreen()),
+        ScreenModel(title: 'profile_title'.tr(), body: ProfileScreen()),
       ];
 
   @override
@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: AppBottomNavigationBar(),
       appBar: AppBar(
+        elevation: 0.5,
           title: BlocBuilder<HomeCubit, HomeStates>(
             builder: (context, state) {
               return Text(

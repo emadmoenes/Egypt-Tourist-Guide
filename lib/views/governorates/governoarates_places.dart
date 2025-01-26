@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:egypt_tourist_guide/views/home/widgets/recommended_places_grid.dart';
+import 'package:egypt_tourist_guide/views/home/widgets/suggested_places_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controllers/home_controller/home_cubit.dart';
@@ -86,8 +86,8 @@ class GovernoratesPlaces extends StatelessWidget {
           HomeSectionTitle(text: "places".tr()),
           BlocBuilder<HomeCubit, HomeStates>(
             builder: (context, state) {
-              return RecommendedPlacesGrid(
-                recommendedPlaces: places,
+              return SuggestedPlacesGrid(
+                suggestedPlaces: places,
                 isWide: true,
               );
             },
