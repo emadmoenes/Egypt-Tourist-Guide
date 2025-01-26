@@ -1,5 +1,4 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
-import 'package:egypt_tourist_guide/core/services/shared_prefs_service.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/auth_button.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +17,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool hiddenPassword = true;
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  AuthController authController = AuthController();
+  late final GlobalKey<FormState> _formKey;
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+  late AuthController _authController;
 
   /*-------------- Methods ----------------*/
   String? _validateEmail(String? value) {
@@ -37,29 +36,55 @@ class _LoginScreenState extends State<LoginScreen> {
     return null;
   }
 
-  void togglePasswordVisibility() {
+  void _togglePasswordVisibility() {
     setState(() {
       hiddenPassword = !hiddenPassword;
     });
   }
 
+  bool _loginLoading = false;
+
   void _login() async {
+    setState(() {
+      _loginLoading = true;
+    });
+    await Future.delayed(Duration(seconds: 1));
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
-      final userData = await SharedPrefsService.getUserData();
+      bool isLogin = await _authController.login(email, password);
 
-      if (userData['email'] == email && userData['password'] == password) {
-        Navigator.pushReplacementNamed(context, AppRoutes.homeRoute);
+      if (isLogin) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRoutes.homeRoute,
+          (route) => false,
+        );
       } else {
+        setState(() {
+          _loginLoading = false;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('invalid_credentials'.tr())),
         );
       }
+    } else {
+      setState(() {
+        _loginLoading = false;
+      });
     }
   }
 
   /*------------ End of Methods --------------*/
+
+  @override
+  void initState() {
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _formKey = GlobalKey<FormState>();
+    _authController = AuthController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +101,11 @@ class _LoginScreenState extends State<LoginScreen> {
             top: 40,
             right: 16,
             child: IconButton(
-              icon:
-                  const Icon(Icons.language, color: AppColors.white, size: 30),
+              icon: const Icon(
+                Icons.language,
+                color: AppColors.white,
+                size: 30,
+              ),
               onPressed: () {
                 // Toggle between English and Arabic
                 final newLocale = context.locale.languageCode == 'en'
@@ -145,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                           suffixIcon: IconButton(
-                            onPressed: togglePasswordVisibility,
+                            onPressed: _togglePasswordVisibility,
                             icon: Icon(
                               hiddenPassword
                                   ? Icons.visibility_off
@@ -156,6 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 16.0),
                         //---- Login button ----//
                         AuthButton(
+                          isLoading: _loginLoading,
                           onPressed: _login,
                           buttonText: 'login'.tr(),
                         ),

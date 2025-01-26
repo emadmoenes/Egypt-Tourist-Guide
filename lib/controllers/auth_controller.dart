@@ -1,9 +1,12 @@
+import 'package:egypt_tourist_guide/core/app_strings_en.dart';
 import 'package:egypt_tourist_guide/core/services/shared_prefs_service.dart';
 import 'package:egypt_tourist_guide/models/user_model.dart';
 
 class AuthController {
   User? _currentUser;
 
+  //done
+  //-- sign up method --//
   Future<void> signup({
     required String fullName,
     required String email,
@@ -30,6 +33,8 @@ class AuthController {
     );
   }
 
+  //done
+  //-- login method --//
   Future<bool> login(String email, String password) async {
     final userData = await SharedPrefsService.getUserData();
     if (userData['email'] == email && userData['password'] == password) {
@@ -41,11 +46,17 @@ class AuthController {
         profilePicUrl: userData['profilePicUrl'],
         address: userData['address'],
       );
+      // save dummy token
+      await SharedPrefsService.saveStringData(
+        key: AppStringEn.tokenKey,
+        value: 'dummy_token',
+      );
       return true;
     }
     return false;
   }
 
+  //-- Update user data method --//
   Future<void> updateUserProfile({
     String? fullName,
     String? email,
@@ -73,12 +84,11 @@ class AuthController {
     }
   }
 
-  User? getCurrentUser() {
-    return _currentUser;
-  }
-
+//done
+  //-- logout method --//
   Future<void> logout() async {
     _currentUser = null;
     await SharedPrefsService.clearUserData();
+    await SharedPrefsService.clearStringData(key: AppStringEn.tokenKey);
   }
 }

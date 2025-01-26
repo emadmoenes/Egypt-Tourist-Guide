@@ -1,5 +1,5 @@
+import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/core/app_images.dart';
-import 'package:egypt_tourist_guide/core/services/shared_prefs_service.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/auth_button.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -15,38 +15,62 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _fullNameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-  final _phoneController = TextEditingController();
+  late final GlobalKey<FormState> _formKey;
+  late final TextEditingController _fullNameController;
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+  late final TextEditingController _confirmPasswordController;
+  late final TextEditingController _phoneController;
+  late final AuthController _authController;
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
-
+  bool _signUpLoading = false;
 
   //-- Signup function --//
   void _signUp() async {
+    setState(() {
+      _signUpLoading = true;
+    });
     if (_formKey.currentState!.validate()) {
       final fullName = _fullNameController.text;
       final email = _emailController.text;
       final password = _passwordController.text;
       final phoneNumber = _phoneController.text;
-
-      await SharedPrefsService.saveUserData(
+      await _authController.signup(
         fullName: fullName,
         email: email,
         password: password,
         phoneNumber: phoneNumber,
       );
-      Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
+
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.loginRoute,
+        (route) => false,
+      );
+    } else {
+      setState(() {
+        _signUpLoading = false;
+      });
     }
   }
 
+  @override
+  void initState() {
+    _formKey = GlobalKey<FormState>();
+    _fullNameController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
+    _phoneController = TextEditingController();
+    _authController = AuthController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     /*----------- Methods -----------*/
+    // validation
     String? validateFullName(String? value) {
       if (value == null || value.isEmpty) {
         return 'validation_full_name'.tr();
@@ -159,6 +183,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(height: 35),
                         //---- Full Name Form Field ----//
                         CustomTextFormField(
+                          keyboardType: TextInputType.name,
                           controller: _fullNameController,
                           labelText: 'full_name',
                           hintText: 'enter_full_name',
@@ -167,6 +192,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(height: 16),
                         //---- Email Form Field ----//
                         CustomTextFormField(
+                          keyboardType: TextInputType.emailAddress,
                           controller: _emailController,
                           labelText: 'email',
                           hintText: 'email_hint',
@@ -175,6 +201,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(height: 16),
                         //---- Password Form Field ----//
                         CustomTextFormField(
+                          keyboardType: TextInputType.visiblePassword,
                           controller: _passwordController,
                           labelText: 'password',
                           hintText: 'password_hint',
@@ -197,6 +224,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(height: 16),
                         //---- Confirm password Form Field ----//
                         CustomTextFormField(
+                          keyboardType: TextInputType.visiblePassword,
                           controller: _confirmPasswordController,
                           labelText: 'confirm_password',
                           hintText: 'confirm_password_hint',
@@ -228,6 +256,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(height: 35),
                         //---- Sign Up Button ----//
                         AuthButton(
+                          isLoading: _signUpLoading,
                           buttonText: 'signup'.tr(),
                           onPressed: _signUp,
                         ),

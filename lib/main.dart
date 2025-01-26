@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:egypt_tourist_guide/controllers/home_controller/home_cubit.dart';
 import 'package:egypt_tourist_guide/core/app_routes.dart';
+import 'package:egypt_tourist_guide/core/app_strings_en.dart';
 import 'package:egypt_tourist_guide/core/custom_page_routes.dart';
+import 'package:egypt_tourist_guide/core/services/shared_prefs_service.dart';
 import 'package:egypt_tourist_guide/views/auth/login_screen.dart';
 import 'package:egypt_tourist_guide/views/auth/signup_screen.dart';
 import 'package:egypt_tourist_guide/views/governorates/governoarates_places.dart';
@@ -13,19 +15,28 @@ import 'package:easy_localization/easy_localization.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
+  await SharedPrefsService.init();
+  String? token =
+      await SharedPrefsService.getStringData(key: AppStringEn.tokenKey);
+  // determine start screen
+  Widget widget = const LoginScreen();
+  if (token != null) {
+    widget = const HomeScreen();
+  }
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'lib/core/lang',
       fallbackLocale: const Locale('en'),
-      child: const MyApp(),
+      child: MyApp(startScreen: widget),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.startScreen});
+
+  final Widget startScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +49,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         onGenerateRoute: onGenerateRoute,
-        home: const HomeScreen(),
+        home: startScreen,
       ),
     );
   }
@@ -52,7 +63,7 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case AppRoutes.signupRoute:
       return SlideRightRoute(child: const SignupScreen());
     case AppRoutes.loginRoute:
-      return SlideRightRoute(child: const LoginScreen());
+      return FadeTransitionRoute(child: const LoginScreen());
     case AppRoutes.homeRoute:
       return FadeTransitionRoute(child: const HomeScreen());
     case AppRoutes.placesRoute:
