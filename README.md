@@ -57,6 +57,9 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 - SlideRightRoute
 - FadeTransitionRoute
 
+### 9. Localization
+- Apply localization feature (Ar and En) to adapt the app to different languages and regions.
+- Using easy localization package.
 ---
 
 ## Navigation Flow
