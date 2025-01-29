@@ -15,7 +15,9 @@ import 'package:easy_localization/easy_localization.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  // initialize shared preferences
   await SharedPrefsService.init();
+  // Get token from shared preferences if exists
   String? token =
       await SharedPrefsService.getStringData(key: AppStringEn.tokenKey);
   // determine start screen

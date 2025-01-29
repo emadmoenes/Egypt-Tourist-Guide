@@ -1,5 +1,6 @@
 import 'package:egypt_tourist_guide/controllers/auth_controller.dart';
 import 'package:egypt_tourist_guide/core/app_images.dart';
+import 'package:egypt_tourist_guide/models/user_model.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/auth_button.dart';
 import 'package:egypt_tourist_guide/views/auth/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +37,14 @@ class _SignupScreenState extends State<SignupScreen> {
       final email = _emailController.text;
       final password = _passwordController.text;
       final phoneNumber = _phoneController.text;
-      await _authController.signup(
+      User user = User(
         fullName: fullName,
         email: email,
         password: password,
         phoneNumber: phoneNumber,
+      );
+      await _authController.signup(
+        user: user,
       );
 
       Navigator.pushNamedAndRemoveUntil(

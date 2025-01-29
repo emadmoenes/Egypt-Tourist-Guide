@@ -2,13 +2,14 @@ import 'package:egypt_tourist_guide/core/services/shared_prefs_service.dart';
 import 'package:egypt_tourist_guide/models/user_model.dart';
 
 class ProfileController {
-  // load user data
+
+  //-- Load user data from shared preferences method --//
   Future<User> loadUserData() async {
     final userData = await SharedPrefsService.getUserData();
     return User.fromMap(userData);
   }
 
-  // update user data
+  //-- Update user data method --//
   Future<void> updateUserData(User user) async {
     await SharedPrefsService.saveUserData(
       fullName: user.fullName,
