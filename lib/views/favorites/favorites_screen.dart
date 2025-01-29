@@ -12,36 +12,32 @@ class FavoritesScreen extends StatelessWidget {
         ? ARABICPLACES.where((place) => place.isFav).toList()
         : PLACES.where((place) => place.isFav).toList();
     double width = MediaQuery.sizeOf(context).width;
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            (favoritePlaces.isEmpty)
-                ? Center(
-                    child: Text('no_favorites'.tr()),
-                  )
-                : Expanded(
-                    child: ListView.builder(
-                      itemCount: favoritePlaces.length,
-                      itemBuilder: (context, index) {
-                        final place = favoritePlaces[index];
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.05,
-                            vertical: width * 0.02,
-                          ),
-                          child: PlaceCard(
-                            place: place,
-                            isWide: true,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-          ],
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        (favoritePlaces.isEmpty)
+            ? Center(
+                child: Text('no_favorites'.tr()),
+              )
+            : Expanded(
+                child: ListView.builder(
+                  itemCount: favoritePlaces.length,
+                  itemBuilder: (context, index) {
+                    final place = favoritePlaces[index];
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.05,
+                        vertical: width * 0.02,
+                      ),
+                      child: PlaceCard(
+                        place: place,
+                        isWide: true,
+                      ),
+                    );
+                  },
+                ),
+              ),
+      ],
     );
   }
 }

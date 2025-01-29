@@ -81,86 +81,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(13.0),
-          child: Align(
-            alignment: Alignment.center,
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 40),
-                  CircleAvatar(
-                    radius: 70,
-                    backgroundImage: AssetImage(AppImages.userImage),
-                  ),
-                  const SizedBox(height: 10),
-                  Divider(
-                    thickness: 1,
-                    color: AppColors.lightPurple,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'profile_details'.tr(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(13.0),
+        child: Align(
+          alignment: Alignment.center,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 40),
+                CircleAvatar(
+                  radius: 70,
+                  backgroundImage: AssetImage(AppImages.userImage),
+                ),
+                const SizedBox(height: 10),
+                Divider(
+                  thickness: 1,
+                  color: AppColors.lightPurple,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'profile_details'.tr(),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                      //-- Save Button --//
-                      IconButton(
-                        icon: Icon(
-                          _isEditing ? Icons.save : Icons.edit_note_rounded,
-                          color: AppColors.lightPurple,
-                          size: 30,
-                        ),
-                        onPressed: () {
-                          if (_isEditing) {
-                            _updateProfile();
-                          } else {
-                            setState(() {
-                              _isEditing = true;
-                            });
-                          }
-                        },
+                    ),
+                    //-- Save Button --//
+                    IconButton(
+                      icon: Icon(
+                        _isEditing ? Icons.save : Icons.edit_note_rounded,
+                        color: AppColors.lightPurple,
+                        size: 30,
                       ),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 1,
-                    color: AppColors.lightPurple,
-                  ),
-                  //---- Profile Card with user data ------//
-                  ProfileCard(
-                    user: _user,
-                    isEditing: _isEditing,
-                    isPasswordVisible: _isPasswordVisible,
-                    onTogglePasswordVisibility: () {
-                      setState(() {
-                        _isPasswordVisible = !_isPasswordVisible;
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  //---- Logout Button ------//
-                  LogOutButton(
-                    logOutFunction: () {
-                      _logOut();
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        AppRoutes.loginRoute,
-                        (_) => false,
-                      );
-                    },
-                  ),
-                ],
-              ),
+                      onPressed: () {
+                        if (_isEditing) {
+                          _updateProfile();
+                        } else {
+                          setState(() {
+                            _isEditing = true;
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                Divider(
+                  thickness: 1,
+                  color: AppColors.lightPurple,
+                ),
+                //---- Profile Card with user data ------//
+                ProfileCard(
+                  user: _user,
+                  isEditing: _isEditing,
+                  isPasswordVisible: _isPasswordVisible,
+                  onTogglePasswordVisibility: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                ),
+                const SizedBox(height: 20),
+                //---- Logout Button ------//
+                LogOutButton(
+                  logOutFunction: () {
+                    _logOut();
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AppRoutes.loginRoute,
+                      (_) => false,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ),
