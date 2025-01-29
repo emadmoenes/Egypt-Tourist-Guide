@@ -8,17 +8,16 @@ class GovernorateCard extends StatelessWidget {
     super.key,
     required this.governorate,
     this.onTap,
-    required this.height,
-    required this.width,
   });
 
   final GovernorateModel governorate;
-  final double height;
-  final double width;
+
   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     double baseContainerHeight = height * 0.5;
     double textFactor = height / 500;
     return InkWell(
@@ -47,9 +46,9 @@ class GovernorateCard extends StatelessWidget {
             ),
             alignment: Alignment.bottomCenter,
             child: GreyContainer(
-                baseContainerHeight: baseContainerHeight,
-                governorate: governorate,
-                textFactor: textFactor,
+              baseContainerHeight: baseContainerHeight,
+              governorate: governorate,
+              textFactor: textFactor,
             ),
           ),
         ),
@@ -77,12 +76,11 @@ class GreyContainer extends StatelessWidget {
       width: double.infinity,
       height: baseContainerHeight * 0.23,
       alignment: Alignment.center,
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomRight: Radius.circular(10.0),
-          bottomLeft: Radius.circular(10.0)
-        ),
+            bottomRight: Radius.circular(10.0),
+            bottomLeft: Radius.circular(10.0)),
         color: AppColors.greyColor,
       ),
       child: Column(

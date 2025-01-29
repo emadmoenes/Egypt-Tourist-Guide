@@ -15,9 +15,6 @@ class GovernoratesScreen extends StatelessWidget {
     final List<GovernorateModel> governorateList =
         context.locale.toString() == 'ar' ? ARABICGOVERNORATES : GOVERNERATES;
 
-    double height = MediaQuery.sizeOf(context).height;
-    double width = MediaQuery.sizeOf(context).width;
-
     //--- Get governorate data ---//
     List<PlacesModel> getGovernorateData(String governorateId) {
       return context.locale.toString() == 'ar'
@@ -37,8 +34,6 @@ class GovernoratesScreen extends StatelessWidget {
           var governorate = governorateList[index];
           return GovernorateCard(
             governorate: governorate,
-            width: width,
-            height: height,
             onTap: () {
               // Go to governorate places
               List<PlacesModel> listOfPlaces =
