@@ -35,6 +35,14 @@ class GovernoratesPlaces extends StatelessWidget {
               height: 200,
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.greyColor.withValues(alpha: 0.3),
+                    spreadRadius: 2,
+                    blurRadius: 3,
+                    offset: Offset(2, 6),
+                  ),
+                ],
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
                   image: AssetImage(governorate.image),
@@ -88,7 +96,7 @@ class GovernoratesPlaces extends StatelessWidget {
             builder: (context, state) {
               return SuggestedPlacesGrid(
                 suggestedPlaces: places,
-                isWide: true,
+                isWide: false,
               );
             },
           ),

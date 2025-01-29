@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: AppBottomNavigationBar(),
       appBar: AppBar(
-        elevation: 0.5,
+          elevation: 0.5,
           title: BlocBuilder<HomeCubit, HomeStates>(
             builder: (context, state) {
               return Text(

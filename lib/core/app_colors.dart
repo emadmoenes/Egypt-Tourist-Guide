@@ -8,7 +8,7 @@ class AppColors {
   static const Color containerColor = Color(0xffD0CBFF);
   static const Color greyColor = Color.fromRGBO(160, 160, 160, 0.8);
   static const Color grey = Color.fromRGBO(158, 158, 158, 1);
-  static const Color secGrey = Color.fromRGBO(160, 160, 160, 0.8);
+  static const Color secGrey = Color.fromRGBO(160, 160, 160, 0.9);
   static const Color blackColor = Color.fromARGB(255, 4, 4, 4);
   static const Color black87Color = Color.fromRGBO(0, 0, 0, 0.867);
   static const Color purple = Color.fromRGBO(156, 39, 176, 1);
