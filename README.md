@@ -40,16 +40,18 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
     - A favorite icon (toggle on/off).
 
 ### 4. Governorates Page
-- Displays a list of governorates.
+- The page displays a list of governorates.
 - **Navigation**: Selecting a governorate navigates to a page showing landmarks specific to that governorate.
 
 ### 5. Profile Page
-- Displays user details including:
+- The page displays user details including:
   - Full Name
   - Email
   - Address
   - Phone number
   - Password (hashed for security).
+- The user can update his data.
+- There is a logout button at the bottom of the page.
 
 ### 6. Favorites Page
 - Displays a list of favorite places.
