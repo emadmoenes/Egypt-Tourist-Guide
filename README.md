@@ -10,12 +10,22 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 
 ### 1. Signup Page
 - **Input Fields**: Full Name, Email, Password, confirm password, Phone Number (optional).
+- **Validation**: There are some conditions to ensure successful sign up.
+   The validations are:
+   1- The name must be not empty.
+   2- The email field must contains @
+   3- The password field must have at least 8 characters.
+   4- The password must contain at least one uppercase letter.
+   5- The password must contain at least one lowercase letter.
+   6- The password must contain at least one digit(0-9).
+   7- The password must contain at least one special character.  
+   5- The password and confirm password fields must be the same.
 - **Data Handling**: Input data is saved in variables.
 - **Navigation**: Includes a **Signup** button that directs users to the **Login Page**.
 
 ### 2. Login Page
 - **Input Fields**: Email and Password.          
-- **Validation**: Checks credentials against saved data.    
+- **Validation**: Checks credentials against saved data (in shared pref).    
 - **Token**: After the login process, there is a dummy token saved in shared pref. so, the user don't have to login again.   
 - **Navigation**: Successful login redirects users to the **Home Page**.    
 
