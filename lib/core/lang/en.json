@@ -18,7 +18,7 @@
   "validation_email_at": "Email should contain \"@\" symbol",
   "validation_email_dot": "Email should contain \".\" symbol",
   "validation_password_empty": "Password Cannot be empty",
-  "validation_password_length": "Password must be at least 8 characters",
+  "validation_password_length": "Password must have at least 8 characters",
   "validation_password_uppercase": "Password must contain at least one uppercase letter",
   "validation_password_lowercase": "Password must contain at least one lowercase letter",
   "validation_password_digit": "Password must contain at least one digit",
