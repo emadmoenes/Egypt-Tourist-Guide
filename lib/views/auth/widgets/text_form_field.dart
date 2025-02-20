@@ -29,9 +29,9 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: labelText.tr(),
-        labelStyle: TextStyle(color: AppColors.grey),
+        labelStyle: const TextStyle(color: AppColors.grey),
         hintText: hintText.tr(),
-        hintStyle: TextStyle(color: AppColors.grey),
+        hintStyle: const TextStyle(color: AppColors.grey),
         filled: true,
         fillColor: AppColors.white.withValues(alpha: 0.6),
         border: OutlineInputBorder(

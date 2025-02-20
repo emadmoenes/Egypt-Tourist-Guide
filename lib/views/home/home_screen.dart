@@ -15,10 +15,12 @@ class HomeScreen extends StatefulWidget {
 
   // List of different screens using Screen Model
   static List<ScreenModel> get screens => [
-        ScreenModel(title: 'app_title'.tr(), body: HomeScreenBody()),
-        ScreenModel(title: 'governorates'.tr(), body: GovernoratesScreen()),
-        ScreenModel(title: 'favorites_title'.tr(), body: FavoritesScreen()),
-        ScreenModel(title: 'profile_title'.tr(), body: ProfileScreen()),
+        ScreenModel(title: 'app_title'.tr(), body: const HomeScreenBody()),
+        ScreenModel(
+            title: 'governorates'.tr(), body: const GovernoratesScreen()),
+        ScreenModel(
+            title: 'favorites_title'.tr(), body: const FavoritesScreen()),
+        ScreenModel(title: 'profile_title'.tr(), body: const ProfileScreen()),
       ];
 
   @override
@@ -30,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     return Scaffold(
-      bottomNavigationBar: AppBottomNavigationBar(),
+      bottomNavigationBar: const AppBottomNavigationBar(),
       appBar: AppBar(
           elevation: 0.5,
           title: BlocBuilder<HomeCubit, HomeStates>(
@@ -46,18 +48,19 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 // Toggle between English and Arabic
                 final newLocale = context.locale.languageCode == 'en'
-                    ? Locale('ar')
-                    : Locale('en');
+                    ? const Locale('ar')
+                    : const Locale('en');
                 context.setLocale(newLocale);
               },
             ),
           ]),
       body: SafeArea(
-        minimum: EdgeInsets.symmetric(vertical: 11),
+        minimum: const EdgeInsets.symmetric(vertical: 11),
         child: BlocBuilder<HomeCubit, HomeStates>(
           builder: (context, state) {
             return Container(
-                child: HomeScreen.screens[homeCubit.currentPageIndex].body);
+              child: HomeScreen.screens[homeCubit.currentPageIndex].body,
+            );
           },
         ),
       ),

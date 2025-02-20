@@ -35,6 +35,7 @@ void main() async {
   );
 }
 
+//--------------------- My App Widget  -----------------------//
 class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.startScreen});
 
@@ -79,7 +80,7 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       );
     default:
       return MaterialPageRoute(
-        builder: (_) => Scaffold(
+        builder: (_) => const Scaffold(
           body: Center(child: Text('Route not found')),
         ),
       );

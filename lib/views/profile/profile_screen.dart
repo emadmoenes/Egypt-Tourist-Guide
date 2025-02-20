@@ -93,21 +93,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 40),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 70,
                   backgroundImage: AssetImage(AppImages.userImage),
                 ),
                 const SizedBox(height: 10),
-                Divider(
-                  thickness: 1,
-                  color: AppColors.lightPurple,
-                ),
+                const MyDivider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'profile_details'.tr(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -131,10 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-                Divider(
-                  thickness: 1,
-                  color: AppColors.lightPurple,
-                ),
+                const MyDivider(),
                 //---- Profile Card with user data ------//
                 ProfileCard(
                   user: _user,
@@ -166,4 +160,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
 ////////////////////////////////////////////
+// My Divider widget
+class MyDivider extends StatelessWidget {
+  const MyDivider({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Divider(
+      thickness: 1,
+      color: AppColors.lightPurple,
+    );
+  }
+}

@@ -20,7 +20,7 @@ class SuggestedPlacesSection extends StatelessWidget {
           );
         }
       } else if (state is HomeErrorState) {
-        return AppErrorWidget();
+        return const AppErrorWidget();
       } else if (state is HomeLoadingState) {
         return const Center(
           child: CircularProgressIndicator(),

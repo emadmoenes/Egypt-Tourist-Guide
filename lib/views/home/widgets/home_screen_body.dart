@@ -14,9 +14,9 @@ class HomeScreenBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HomeSectionTitle(text: 'popular-places'.tr()),
-          PopularPlacesSection(),
+          const PopularPlacesSection(),
           HomeSectionTitle(text: 'suggested_places'.tr()),
-          SuggestedPlacesSection(),
+          const SuggestedPlacesSection(),
         ],
       ),
     );

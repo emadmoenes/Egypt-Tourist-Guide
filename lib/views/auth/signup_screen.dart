@@ -46,7 +46,9 @@ class _SignupScreenState extends State<SignupScreen> {
       await _authController.signup(
         user: user,
       );
-
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('account_created'.tr())),
+      );
       Navigator.pushNamedAndRemoveUntil(
         context,
         AppRoutes.loginRoute,
@@ -133,7 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(AppImages.signupBackground),
                 fit: BoxFit.cover,
@@ -145,12 +147,12 @@ class _SignupScreenState extends State<SignupScreen> {
             top: 40,
             right: 16,
             child: IconButton(
-              icon: Icon(Icons.language, color: Colors.white, size: 30),
+              icon: const Icon(Icons.language, color: Colors.white, size: 30),
               onPressed: () {
                 // Toggle between English and Arabic
                 final newLocale = context.locale.languageCode == 'en'
-                    ? Locale('ar')
-                    : Locale('en');
+                    ? const Locale('ar')
+                    : const Locale('en');
                 context.setLocale(newLocale);
               },
             ),
@@ -162,7 +164,7 @@ class _SignupScreenState extends State<SignupScreen> {
               width: MediaQuery.of(context).size.width * 1,
               decoration: BoxDecoration(
                 color: Colors.white.withValues(alpha: 0.5),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
                 ),
@@ -178,7 +180,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         // Sign up text
                         Text(
                           'signup'.tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             color: AppColors.black87Color,
@@ -193,16 +195,18 @@ class _SignupScreenState extends State<SignupScreen> {
                           hintText: 'enter_full_name',
                           validator: validateFullName,
                         ),
-                        const SizedBox(height: 16),
+
                         //---- Email Form Field ----//
-                        CustomTextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: _emailController,
-                          labelText: 'email',
-                          hintText: 'email_hint',
-                          validator: validateEmail,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: CustomTextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            controller: _emailController,
+                            labelText: 'email',
+                            hintText: 'email_hint',
+                            validator: validateEmail,
+                          ),
                         ),
-                        const SizedBox(height: 16),
                         //---- Password Form Field ----//
                         CustomTextFormField(
                           keyboardType: TextInputType.visiblePassword,
@@ -225,31 +229,32 @@ class _SignupScreenState extends State<SignupScreen> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 16),
                         //---- Confirm password Form Field ----//
-                        CustomTextFormField(
-                          keyboardType: TextInputType.visiblePassword,
-                          controller: _confirmPasswordController,
-                          labelText: 'confirm_password',
-                          hintText: 'confirm_password_hint',
-                          obscureText: !_isConfirmPasswordVisible,
-                          validator: validateConfirmPassword,
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _isConfirmPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Colors.black,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: CustomTextFormField(
+                            keyboardType: TextInputType.visiblePassword,
+                            controller: _confirmPasswordController,
+                            labelText: 'confirm_password',
+                            hintText: 'confirm_password_hint',
+                            obscureText: !_isConfirmPasswordVisible,
+                            validator: validateConfirmPassword,
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _isConfirmPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isConfirmPasswordVisible =
+                                      !_isConfirmPasswordVisible;
+                                });
+                              },
                             ),
-                            onPressed: () {
-                              setState(() {
-                                _isConfirmPasswordVisible =
-                                    !_isConfirmPasswordVisible;
-                              });
-                            },
                           ),
                         ),
-                        const SizedBox(height: 16),
                         //---- Phone Form Field ----//
                         CustomTextFormField(
                           controller: _phoneController,

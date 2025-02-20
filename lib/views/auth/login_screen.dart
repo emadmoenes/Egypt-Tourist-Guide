@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _loginLoading = true;
     });
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
@@ -97,6 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
               fit: BoxFit.cover,
             ),
           ),
+          //-- Change language icon --//
           Positioned(
             top: 40,
             right: 16,
@@ -109,8 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 // Toggle between English and Arabic
                 final newLocale = context.locale.languageCode == 'en'
-                    ? Locale('ar')
-                    : Locale('en');
+                    ? const Locale('ar')
+                    : const Locale('en');
                 context.setLocale(newLocale);
               },
             ),
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 20),
                         Text(
                           'login'.tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             color: AppColors.black87Color,
