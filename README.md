@@ -14,9 +14,10 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 - **Navigation**: Includes a **Signup** button that directs users to the **Login Page**.
 
 ### 2. Login Page
-- **Input Fields**: Email and Password.
-- **Validation**: Checks credentials against saved data.
-- **Navigation**: Successful login redirects users to the **Home Page**.
+- **Input Fields**: Email and Password.          
+- **Validation**: Checks credentials against saved data.    
+- **Token**: After the login process, there is a dummy token saved in shared pref. so, the user don't have to login again.   
+- **Navigation**: Successful login redirects users to the **Home Page**.    
 
 ### 3. Home Page
 - **Suggested Places to Visit**: Displays attractions in a grid view.
