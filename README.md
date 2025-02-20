@@ -63,7 +63,7 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 ---
 
 ## Navigation Flow
-1. **Signup Page** → **Login Page** → **Welcome Page** → **Home Page**
+1. **Login Page** → **Signup Page** → **Home Page**
 2. **Home Page** → **Governorates Page** → **Landmarks Page**
 3. **Home Page** → **Favorites Page**
 4. **Home Page** → **Profile Page**
