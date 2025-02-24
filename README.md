@@ -6,7 +6,7 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 
 ---
 
-## Features 
+## Pages & Features 
 
 ### 1. Signup Page
 - **Input Fields**: Full Name, Email, Password, confirm password, Phone Number (optional).
@@ -73,17 +73,25 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 ### 9. Localization
 - Apply localization feature (Ar and En) to adapt the app to different languages and regions.
 - Using easy localization package.
----
+------
 
 ## Navigation Flow
 1. **Login Page** → **Signup Page** → **Home Page**
 2. **Home Page** → **Governorates Page** → **Landmarks Page**
 3. **Home Page** → **Favorites Page**
 4. **Home Page** → **Profile Page**
-   
+
+## App Structure
+The code is organized using **MVC Architecture** for clean and maintainable code structure.
+The main folders in lib are:
+- **controllers** Contains controllers which deal with presentaion layer to handle data (home controller, auth controller, and profile controller).
+- **core**  Define lang and services logic folders. also, the other general files in the app (lang folder, services folder).
+- **models**: Define the data models (place model, governorate model, user model, and screen model).
+- **views**: UI design and components (screens and widgets).
+
 -------
 
 ## **Packages Used**
 - **SharedPreferences**: For local data storage and offline support ==> https://pub.dev/packages/shared_preferences.
 - **easy_localization**: For localization feature ==> https://pub.dev/packages/easy_localization.
-- **MVC Architecture**: For clean and maintainable code structure.
+- **flutter_bloc**: For state management using bloc (cubit) ==> https://pub.dev/packages/flutter_bloc.
