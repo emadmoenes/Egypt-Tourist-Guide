@@ -81,6 +81,8 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 3. **Home Page** → **Favorites Page**
 4. **Home Page** → **Profile Page**
 
+------
+
 ## App Structure
 The code is organized using **MVC Architecture** for clean and maintainable code structure.                   
 The main folders in lib are:
