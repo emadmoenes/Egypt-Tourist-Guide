@@ -82,7 +82,7 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 4. **Home Page** → **Profile Page**
 
 ## App Structure
-The code is organized using **MVC Architecture** for clean and maintainable code structure.
+The code is organized using **MVC Architecture** for clean and maintainable code structure.                   
 The main folders in lib are:
 - **controllers** Contains controllers which deal with presentaion layer to handle data (home controller, auth controller, and profile controller).
 - **core**  Define lang and services logic folders. also, the other general files in the app (lang folder, services folder).
