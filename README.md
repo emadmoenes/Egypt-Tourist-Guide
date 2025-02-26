@@ -75,6 +75,14 @@ The **Egypt Tourist Guide** is a mobile application designed to help tourists ex
 - Using easy localization package.
 ------
 
+## How to Run
+
+1. Clone the repository.
+2. Run `flutter pub get` to install dependencies.
+3. Run `flutter run` to start the app.
+
+---------------------------------------
+
 ## Navigation Flow
 1. **Login Page** → **Signup Page** → **Home Page**
 2. **Home Page** → **Governorates Page** → **Landmarks Page**
